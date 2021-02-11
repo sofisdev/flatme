@@ -269,7 +269,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    requred: true,
+    required: true,
   },
   city: {
     type:String,
