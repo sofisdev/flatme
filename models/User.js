@@ -273,14 +273,15 @@ const userSchema = new Schema({
   },
   city: {
     type:String,
-    required:true
+    required:false
   },
   country: {
     type: String,
     required:true
   },
   dateRegister:{
-    type: Date.now(),
+    type: Date,
+    default: Date.now(),
     required: true
   },
   usertype:{
