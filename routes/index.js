@@ -82,10 +82,10 @@ router.post('/login', (req, res, next)=>{
         if (result){
           let isMatching = bcrypt.compareSync(password, result.password)
           if(isMatching){
-            console.log('Check')
+            res.redirect('/reviews')
           }
           else {
-            console.log('check 2')
+            res.render('signup')
           }
         }
     })
