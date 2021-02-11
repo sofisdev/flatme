@@ -17,4 +17,8 @@ router.get('/signup', (req, res, next) => {
   res.render('signup.hbs');
 });
 
+router.get('/reviews', (req, res, next)=>{
+  res.render('user/reviews')
+})
+
 module.exports = router;
