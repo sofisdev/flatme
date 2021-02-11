@@ -281,7 +281,7 @@ const userSchema = new Schema({
   },
   dateRegister:{
     type: Date,
-    default: Date.now(),
+    default: Date.now,
     required: true
   },
   usertype:{

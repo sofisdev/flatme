@@ -24,7 +24,7 @@ const CommentSchema = new Schema({
   marker: String,
   user: {
     type: Mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'users'
   }
 });
 
