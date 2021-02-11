@@ -67,38 +67,30 @@ router.post('/signup', (req, res, next) => {
     })
     .catch((err) => next(err))
   
-  UserModel.create({email: email, name: capitalized(name), lastname: capitalized(lastname), password: hash, 
+  UserModel.create({email, name: capitalized(name), lastname: capitalized(lastname), password: hash, 
     country: country, hobbies: hobbies})
     .then(() => res.redirect('/login'))
     .catch((err) => next(err))
 })
 
-// router.post('/login', (req, res, next)=>{
-
-  const {email , password} = req.body
+router.post('/login', (req, res, next)=>{
+  const {email, password} = req.body
+  console.log('Hello')
 
   UserModel.findOne({email : email})
     .then((result)=>{
         if (result){
-          bcrypt.compare(password, result.password)
-            .then((isMatching)=>{
-                if(isMatching){
-                  res.redirect('/reviews')
-                }
-                else {
-                  res.render('login')
-                }
-            })
-            .catch(()=>{
-              console.log('Comparing the password failed')
-            })
-        }
-        else {
-          res.render('login')
+          let isMatching = bcrypt.compareSync(password, result.password)
+          if(isMatching){
+            console.log('Check')
+          }
+          else {
+            console.log('check 2')
+          }
         }
     })
     .catch(()=>{
-      console.log('Not working')
+      console.log('Working working')
     })
 })
 
