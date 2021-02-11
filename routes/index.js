@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-/* GET home page */
+//GET Methods
 router.get("/", (req, res, next) => {
   res.render("index");
 });
@@ -21,4 +21,12 @@ router.get('/reviews', (req, res, next)=>{
   res.render('user/reviews')
 })
 
+//POST Methods
+router.post('/signup', (req, res, next) => {
+  const {name, lastname, 
+          email, password, 
+          hobbies, country} = req.body
+})
+
+//Export Router
 module.exports = router;
