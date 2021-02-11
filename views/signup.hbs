@@ -1,9 +1,35 @@
+{{> mainpartial}}
+
 <div class="subtitle">
   <h1>Do you want to create an account?</h1>
   <span>Joining flatme will give you access to our reviews and 
     will allow you to participate within out community</span>
 </div>
+<br>
+<div>
+  <form action="">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" id="name" placeholder="Name">
 
-<form>
-  
-</form>
+    <label for="lastname" class="form-label">Last Name</label>
+    <input type="text" name="lastname" id="lastname" placeholder="Last Name">
+
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" name="email" id="email" placeholder="Email">
+
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <div id="passwordHelpBlock" class="form-text">
+      Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+    </div>
+
+    <label for="hobbies" class="form-label">Hobbies / interests</label>
+    <input type="text" name="hobbies" id="hobbies" placeholder="Shopping, reading, ...">
+    
+    <label for="country" class="form-label">Country</label>
+    <input type="text" name="country" id="name" placeholder="Country">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <br>
+</div>
