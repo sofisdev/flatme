@@ -26,6 +26,12 @@ router.post('/signup', (req, res, next) => {
   const {name, lastname, 
           email, password, 
           hobbies, country} = req.body
+
+  // if (!email.length || !name.length || !lastname.length ||
+  //    !password.length || !country.length || !name.length) {
+  //     res.render('auth/signup', {msg: 'Please enter all fields'})
+  //     return;
+  // }
 })
 
 //Export Router
