@@ -1,12 +1,8 @@
 const router = require("express").Router();
 
-/* GET home page */
+//GET Methods
 router.get("/", (req, res, next) => {
   res.render("index");
-});
-
-router.get('/signup', (req, res, next) => {
-  res.render('signup.hbs');
 });
 
 router.get("/about", (req, res, next)=>{
@@ -33,4 +29,18 @@ router.get('/profile', (req, res, next)=>{
   res.render('user/profile')
 })
 
+//POST Methods
+router.post('/signup', (req, res, next) => {
+  const {name, lastname, 
+          email, password, 
+          hobbies, country} = req.body
+
+  // if (!email.length || !name.length || !lastname.length ||
+  //    !password.length || !country.length || !name.length) {
+  //     res.render('auth/signup', {msg: 'Please enter all fields'})
+  //     return;
+  // }
+})
+
+//Export Router
 module.exports = router;
