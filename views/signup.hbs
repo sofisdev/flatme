@@ -225,7 +225,7 @@
         <option value="Somalia">Somalia</option>
         <option value="South Africa">South Africa</option>
         <option value="South Georgia">South Georgia and the South Sandwich Islands</option>
-        <option value="Span">Spain</option>
+        <option value="Spain">Spain</option>
         <option value="SriLanka">Sri Lanka</option>
         <option value="St. Helena">St. Helena</option>
         <option value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
@@ -273,3 +273,9 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+{{#if msg}}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> {{msg}}
+</div>
+{{/if}}
