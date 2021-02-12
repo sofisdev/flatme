@@ -4,6 +4,15 @@ const UserModel = require('../models/User.js')
 const CommentModel = require('../models/Comment.js')
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
+const checkLoggedInUser = (req, res, next) =>{
+  if(req.session.loggedInUser){
+    next()
+  }
+  else {
+    res.redirect('/signup')
+  }
+}
+
 
 //GET Methods
 router.get("/", (req, res, next) => {
@@ -22,7 +31,7 @@ router.get('/signup', (req, res, next) => {
   res.render('signup.hbs');
 });
 
-router.get('/reviews', (req, res, next)=>{
+router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   CommentModel.find()
     .then((result) => {
       res.render('user/reviews', {review: result})
@@ -30,11 +39,11 @@ router.get('/reviews', (req, res, next)=>{
     .catch()
 })
 
-router.get('/writereview', (req, res, next)=>{
+router.get('/writereview', checkLoggedInUser, (req, res, next)=>{
   res.render('user/writereview')
 })
 
-router.get('/profile', (req, res, next)=>{
+router.get('/profile',checkLoggedInUser, (req, res, next)=>{
 
   let email = req.session.loggedInUser.email
 
@@ -47,7 +56,7 @@ router.get('/profile', (req, res, next)=>{
     })
 })
 
-router.get('/profile/edit', (req, res, next)=>{
+router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
 
   let email = req.session.loggedInUser.email
 
@@ -60,7 +69,7 @@ router.get('/profile/edit', (req, res, next)=>{
     })
 })
 
-router.get('/logout', (req,res,next)=>{
+router.get('/logout', checkLoggedInUser, (req,res,next)=>{
   req.session.destroy()
   res.redirect('/')
 })
