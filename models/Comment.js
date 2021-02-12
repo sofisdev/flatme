@@ -46,6 +46,13 @@ const CommentSchema = new Schema({
     default:"../public/images/favicon.ico",
     required:true
   },
+
+  status: {
+    type:String,
+    required:true,
+    enum:['draft', 'published'],
+    default: 'draft'
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',

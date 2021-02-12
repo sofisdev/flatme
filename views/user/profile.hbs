@@ -15,14 +15,12 @@
   </div>
 
 <div class="container">
-  <h2>Your reviews</h2>
-  {{#each comment}}
-  <p>{{this.title}}</p>
-  {{/each}}
-  <a href="">Edit</a>
-  <a href="">Delete</a>
-  <h3>Great area</h3>
-  <p>Spain, Barcelona, Gracia, Carrer Verdi</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aliquam sint nulla, dolores tempora labore provident ad officiis veritatis, facere cupiditate natus adipisci consectetur totam excepturi minus similique molestiae iusto?</p>
-
+  {{#if comment}}
+    <h2>Your reviews</h2>
+    {{#each comment}}
+      <p>{{this.title}}</p>
+    {{/each}}
+    <a href="">Edit</a>
+    <a href="">Delete</a>
+  {{/if}}
 </div>

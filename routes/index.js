@@ -52,7 +52,6 @@ router.get('/profile', (req, res, next) =>{
       CommentModel.find({userId: req.session.loggedInUser._id})
             .populate('userId')
             .then((comment) => {
-              console.log(comment[0].title)
               res.render('user/profile', {user, comment})
               // res.json(comment)
             })
