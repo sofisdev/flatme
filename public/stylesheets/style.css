@@ -1,11 +1,47 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+:root {
+  --orange : #F18F01;
+  --blue : #048ba8;
+  --darkblue: #020122;
+  --light-grey: #f1f2f6;
+  --white: #fbfbff;
+}
 
-a {
-  color: #00b7ff; }
+*{
+  margin: 0;
+  font-family: sans-serif;
+}
 
-h1 {
-  color: 15px; }
+img{
+  width: 150px;
+  height: 60px;
+}
 
-/*# sourceMappingURL=style.css.map */
+.mynavbar {
+  background: white;
+
+}
+
+footer {
+  text-align: center;
+}
+
+.myhero {
+  background-image: url(../images/door.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 85vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+button{
+  border-radius: 5px;
+  border: none;
+}
