@@ -31,7 +31,7 @@ router.get('/reviews', (req, res, next)=>{
 })
 
 router.get('/writereview', (req, res, next)=>{
-  res.render('user/writereview', {review: result})
+  res.render('user/writereview')
 })
 
 router.get('/profile', (req, res, next)=>{
