@@ -23,11 +23,15 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.get('/reviews', (req, res, next)=>{
-  res.render('user/reviews')
+  CommentModel.find()
+    .then((result) => {
+      res.render('user/reviews', {review: result})
+    })
+    .catch()
 })
 
 router.get('/writereview', (req, res, next)=>{
-  res.render('user/writereview')
+  res.render('user/writereview', {review: result})
 })
 
 router.get('/profile', (req, res, next)=>{
