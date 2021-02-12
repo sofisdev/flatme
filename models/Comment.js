@@ -6,11 +6,27 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
+  country: {
+    type: String,
+    required:true
+  },
+  city: {
+    type: String,
+    required:true
+  },
+  District: {
+    type: String,
+    required:true
+  },
+  Street: {
+    type: String,
+    required:true
+  },
   title: {
     type: String,
     required: true
   },
-  message: {
+  review: {
     type: String,
     required: true
   },
@@ -25,7 +41,11 @@ const CommentSchema = new Schema({
     enum: ['Family', 'Gay-friendly', 'Students'],
     required: true
   },
-  marker: String,
+  marker: {
+    type:String,
+    default:"../public/images/favicon.ico",
+    required:true
+  },
   user: {
     type: Mongoose.Schema.Types.ObjectId,
     ref: 'users'
