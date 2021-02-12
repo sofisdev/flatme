@@ -36,11 +36,28 @@ router.get('/profile', (req, res, next)=>{
   UserModel.find({email : email})
     .then((user)=>{
       res.render('user/profile', {user})
-      console.log(user)
     })
     .catch(()=>{
       console.log('Something is not working rendering the user')
     })
+})
+
+router.get('/profile/edit', (req, res, next)=>{
+
+  let email = req.session.loggedInUser.email
+
+  UserModel.find({email : email})
+    .then((user)=>{
+      res.render('user/update-profile', {user})
+    })
+    .catch(()=>{
+      console.log('Something is not working editing the user')
+    })
+})
+
+router.get('/logout', (req,res,next)=>{
+  req.session.destroy()
+  res.redirect('/')
 })
 
 //POST Methods
@@ -103,6 +120,22 @@ router.post('/login', (req, res, next)=>{
     .catch(()=>{
       console.log('Working working')
     })
+})
+
+router.post('/profile/edit', (req, res, next)=>{
+  const {name, lastname, 
+          email, hobbies, country} = req.body
+
+  let editedUser = {
+    name: name,
+    lastname : lastname,
+    hobbies: hobbies,
+    country: country
+  }
+
+  UserModel.findOneAndUpdate({email : email}, editedUser)
+      .then(() => res.redirect('/profile'))
+      .catch(() => console.log('Cannot edit'))
 })
 
 //Export Router
