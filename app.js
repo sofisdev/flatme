@@ -24,7 +24,7 @@ require("./config")(app);
 const projectName = "flatme";
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)}- Generated with IronGenerator`;
+app.locals.title = `${capitalized(projectName)}`;
 
 // Set up connect-mongo
 const session = require('express-session');

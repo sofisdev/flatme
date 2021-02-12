@@ -4,6 +4,15 @@ const UserModel = require('../models/User.js')
 const CommentModel = require('../models/Comment.js')
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
+const checkLoggedInUser = (req, res, next) =>{
+  if(req.session.loggedInUser){
+    next()
+  }
+  else {
+    res.redirect('/signup')
+  }
+}
+
 
 //GET Methods
 router.get("/", (req, res, next) => {
@@ -22,7 +31,7 @@ router.get('/signup', (req, res, next) => {
   res.render('signup.hbs');
 });
 
-router.get('/reviews', (req, res, next)=>{
+router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   CommentModel.find()
     .then((result) => {
       res.render('user/reviews', {review: result})
@@ -52,6 +61,24 @@ router.get('/profile', (req, res, next) =>{
       console.log('Something is not working rendering the user')
     })
 
+})
+
+router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
+
+  let email = req.session.loggedInUser.email
+
+  UserModel.find({email : email})
+    .then((user)=>{
+      res.render('user/update-profile', {user})
+    })
+    .catch(()=>{
+      console.log('Something is not working editing the user')
+    })
+})
+
+router.get('/logout', checkLoggedInUser, (req,res,next)=>{
+  req.session.destroy()
+  res.redirect('/')
 })
 
 //POST Methods
@@ -98,6 +125,11 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) =>{
   const {email, password} = req.body
 
+  if (!email.length || !password.length ) {
+    res.render('login', {msg: 'Please enter all fields'})
+    return;
+  }
+
   UserModel.findOne({email : email})
     .then((result)=>{
         if (result){
@@ -116,6 +148,26 @@ router.post('/login', (req, res, next) =>{
     })
 })
 
+router.post('/profile/edit', (req, res, next)=>{
+  const {name, lastname, 
+          email, hobbies, country} = req.body
+
+  let editedUser = {
+    name: name,
+    lastname : lastname,
+    hobbies: hobbies,
+    country: country
+  }
+
+  if( !editedUser.name || !editedUser.lastname || !editedUser.country){
+    res.render('user/update-profile', {msg: 'Please enter all fields'})
+  } else {
+    UserModel.findOneAndUpdate({email : email}, editedUser)
+    .then(() => res.redirect('/profile'))
+    .catch(() => console.log('Cannot edit'))
+  }
+})
+
 router.post('/writereview', (req, res, next) => {
   const {country, city, district, street, title, review, score, tags} = req.body;
   
@@ -124,7 +176,7 @@ router.post('/writereview', (req, res, next) => {
     !street.length || !review.length || !score.length ) {
      res.render('signup.hbs', {msg: 'Please enter all fields'})
      return;
- }
+     }
 
   //create a review on the database
   CommentModel.create({country, city, district, street, title, review, score, tags, userId: req.session.loggedInUser._id})
