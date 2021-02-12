@@ -4,7 +4,8 @@ const { Schema, model, Mongoose } = require("mongoose");
 const CommentSchema = new Schema({
   idGeo: {
     type: String,
-    required: true
+    required: true,
+    default: '0'
   },
   country: {
     type: String,
@@ -14,11 +15,11 @@ const CommentSchema = new Schema({
     type: String,
     required:true
   },
-  District: {
+  district: {
     type: String,
     required:true
   },
-  Street: {
+  street: {
     type: String,
     required:true
   },
@@ -38,16 +39,15 @@ const CommentSchema = new Schema({
   },
   tags:{
     type:String,
-    enum: ['Family', 'Gay-friendly', 'Students'],
-    required: true
+    enum: ['Family', 'Gay-friendly', 'Students']
   },
   marker: {
     type:String,
     default:"../public/images/favicon.ico",
     required:true
   },
-  user: {
-    type: Mongoose.Schema.Types.ObjectId,
+  userId: {
+    type: Schema.Types.ObjectId,
     ref: 'users'
   }
 });

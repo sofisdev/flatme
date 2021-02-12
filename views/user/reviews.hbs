@@ -2,11 +2,28 @@
 
 <div class="container">
   <h2>View all reviews</h2>
-
   <form action="">
     <input type="text" name="search" id="search" placeholder="What are you looking for?">
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
+  <div class="viewAll">
+    {{#each review}}
+      <h3>{{this.title}}</h3>
+      <div class="direction">
+        <p>{{this.country}}</p>
+        <p>{{this.city}}</p>
+        <p>{{this.district}}</p>
+        <p>{{this.street}}</p>
+      </div>
+      <p>{{this.review}}</p>
+      <p>{{this.score}}</p>
+      <p>{{this.tags}}</p>
+      <img src="{{this.picture}}" alt="picture">
+      <br>
+      <hr>
+      <br>
+    {{/each}}
+  </div>
 </div>
 
 <div class="container">

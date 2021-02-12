@@ -3,7 +3,7 @@
 <h1>Write a review</h1>
 
 <div class="container">
-  <form action="">
+  <form method="POST" action="/writereview">
     <label for="country" class="form-label">Country</label> 
     <select id="country" name="country" class="form-select form-select-sm" aria-label=".form-select-sm example">
       <option selected></option>
@@ -257,6 +257,9 @@
     <label for="street" class="form-label">Street</label>
     <input type="text" name="street" id="street">
 
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" id="title">
+
     <label for="review" class="form-label">Your review</label>
     <input type="text" name="review" id="review">
 
@@ -268,27 +271,23 @@
         <option value="3">3</option>
         <option value="4">4</option>
         <option value="5">5</option>
+    </select>
 
-    <div class="form-check">
-      <input name="tag1" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Family
-      </label>
-    </div>
-    <div class="form-check">
-      <input name="tag2" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Gay-friendly
-      </label>
-    </div>
-    <div class="form-check">
-      <input name="tag3" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Students
-      </label>
-    </div>
-
+    <label for="tags" class="form-label">Select a label</label> 
+    <select id="tags" name="tags" class="form-select form-select-sm" aria-label=".form-select-sm example">
+      <option selected></option>
+        <option value="Family">Family</option>
+        <option value="Gay-friendly">Gay-friendly</option>
+        <option value="Students">Students</option>
+    </select>
+    
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <br>
 </div>
+
+{{#if msg}}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> {{msg}}
+</div>
+{{/if}}
