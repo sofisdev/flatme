@@ -31,7 +31,7 @@ router.get('/reviews', (req, res, next)=>{
 })
 
 router.get('/writereview', (req, res, next)=>{
-  res.render('user/writereview', {review: result})
+  res.render('user/writereview')
 })
 
 router.get('/profile', (req, res, next)=>{
@@ -109,6 +109,11 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next)=>{
   const {email, password} = req.body
 
+  if (!email.length || !password.length ) {
+    res.render('login', {msg: 'Please enter all fields'})
+    return;
+  }
+
   UserModel.findOne({email : email})
     .then((result)=>{
         if (result){
@@ -138,9 +143,13 @@ router.post('/profile/edit', (req, res, next)=>{
     country: country
   }
 
-  UserModel.findOneAndUpdate({email : email}, editedUser)
-      .then(() => res.redirect('/profile'))
-      .catch(() => console.log('Cannot edit'))
+  if( !editedUser.name || !editedUser.lastname || !editedUser.country){
+    res.render('user/update-profile', {msg: 'Please enter all fields'})
+  } else {
+    UserModel.findOneAndUpdate({email : email}, editedUser)
+    .then(() => res.redirect('/profile'))
+    .catch(() => console.log('Cannot edit'))
+  }
 })
 
 router.post('/writereview', (req, res, next) => {
