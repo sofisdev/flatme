@@ -30,7 +30,17 @@ router.get('/writereview', (req, res, next)=>{
 })
 
 router.get('/profile', (req, res, next)=>{
-  res.render('user/profile')
+
+  let email = req.session.loggedInUser.email
+
+  UserModel.find({email : email})
+    .then((user)=>{
+      res.render('user/profile', {user})
+      console.log(user)
+    })
+    .catch(()=>{
+      console.log('Something is not working rendering the user')
+    })
 })
 
 //POST Methods
@@ -38,6 +48,7 @@ router.post('/signup', (req, res, next) => {
   const {name, lastname, 
           email, password, 
           hobbies, country} = req.body
+
 
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
@@ -75,17 +86,17 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next)=>{
   const {email, password} = req.body
-  console.log('Hello')
 
   UserModel.findOne({email : email})
     .then((result)=>{
         if (result){
           let isMatching = bcrypt.compareSync(password, result.password)
           if(isMatching){
-            res.redirect('/reviews')
+            req.session.loggedInUser = result
+            res.redirect('/profile')
           }
           else {
-            res.render('signup')
+            res.redirect('/signup')
           }
         }
     })
