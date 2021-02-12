@@ -1,12 +1,13 @@
 {{> userpartial}}
 
-<h1>Hello {{name}}, welcome to your profile</h1>
+<h1>Hello {{user.0.name}}, welcome to your profile</h1>
 
 <div class="container">
-  <h6>Name :</h6>
-  <h6>Last Name :</h6>
-  <h6>Email : </h6>
-  <h6>City : </h6>
+  <h6>Name : {{user.0.name}}</h6>
+  <h6>Last Name : {{user.0.lastname}}</h6>
+  <h6>Email : {{user.0.email}}</h6>
+  <h6>Country : {{user.0.country}}</h6>
+  <h6>Hobbies : {{user.0.hobbies}}</h6>
 
   <a href="/edit">Edit</a>
 </div>
