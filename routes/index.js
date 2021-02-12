@@ -39,11 +39,11 @@ router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
     .catch()
 })
 
-router.get('/writereview', checkLoggedInUser, (req, res, next)=>{
+router.get('/writereview', (req, res, next) =>{
   res.render('user/writereview')
 })
 
-router.get('/profile',checkLoggedInUser, (req, res, next)=>{
+router.get('/profile', (req, res, next) =>{
 
   let email = req.session.loggedInUser.email
 
@@ -115,7 +115,7 @@ router.post('/signup', (req, res, next) => {
     .catch((err) => next(err))
 })
 
-router.post('/login', (req, res, next)=>{
+router.post('/login', (req, res, next) =>{
   const {email, password} = req.body
 
   if (!email.length || !password.length ) {
@@ -176,6 +176,30 @@ router.post('/writereview', (req, res, next) => {
     .then(() => res.redirect('/reviews'))
     .catch((err) => next(err))
 
+})
+
+router.post('/reviews', (req, res, next) => {
+  const {score, tags} = req.body;
+
+  //Define filter according to search results
+  let filter = {}
+
+  if(score && tags) {
+  filter = {$and:[{score: score}, {tags: tags}]}
+  }
+  else if (score){
+    filter = {score:score}
+  }
+  else if (tags){
+    filter = {tags:tags}
+  }
+
+  CommentModel.find(filter)
+    .then((result) => {
+      res.render('user/reviews', {review: result})
+      console.log(result)
+    })
+    .catch(() => res.redirect('/reviews'))
 })
 
 //Export Router

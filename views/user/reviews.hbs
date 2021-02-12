@@ -2,23 +2,43 @@
 
 <div class="container">
   <h2>View all reviews</h2>
-  <form action="">
-    <input type="text" name="search" id="search" placeholder="What are you looking for?">
+  <form method="POST" action="/reviews">
+    <label for="score" class="form-label">Score out of 5</label> 
+    <select id="score" name="score" class="form-select form-select-sm" aria-label=".form-select-sm example">
+      <option selected></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <label for="tags" class="form-label">Select a label</label> 
+    <select id="tags" name="tags" class="form-select form-select-sm" aria-label=".form-select-sm example">
+      <option selected></option>
+        <option value="Family">Family</option>
+        <option value="Gay-friendly">Gay-friendly</option>
+        <option value="Students">Students</option>
+    </select>
+
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
   <div class="viewAll">
     {{#each review}}
       <h3>{{this.title}}</h3>
       <div class="direction">
-        <p>{{this.country}}</p>
-        <p>{{this.city}}</p>
-        <p>{{this.district}}</p>
-        <p>{{this.street}}</p>
+        <p>Country: {{this.country}}</p>
+        <p>City: {{this.city}}</p>
+        <p>District: {{this.district}}</p>
+        <p>Street: {{this.street}}</p>
       </div>
-      <p>{{this.review}}</p>
-      <p>{{this.score}}</p>
-      <p>{{this.tags}}</p>
+      <p>Review: {{this.review}}</p>
+      <p>Score: {{this.score}}/5</p>
+      <p>Tags: {{this.tags}}</p>
+      {{#if this.picture}}
+
       <img src="{{this.picture}}" alt="picture">
+      {{/if}}
       <br>
       <hr>
       <br>
@@ -28,13 +48,28 @@
 
 <div class="container">
   <h2>Example review</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga exercitationem nobis accusantium, nesciunt deserunt consectetur et amet eaque odio doloremque laboriosam, tempore iure eveniet ducimus? Id reiciendis soluta a quia!</p>
-</div>
+  <div class="example-review">
+    <h3>Title of the review</h3>
+    <div class="direction">
+      <p>Country: France</p>
+      <p>City: Lyon</p>
+      <p>District: Vieux Lyon</p>
+      <p>Street: Rue Saint-Jean</p>
+    </div>
+    <p>Review: Charming area full of life, but also touristic zone</p>
+    <p>Score: 4/5</p>
+    <p>tags: Family</p>
+    {{#if this.picture}}
+
+    <img src="{{this.picture}}" alt="picture">
+    {{/if}}
+    </div>
+  </div>
+
 
 <div class="container">
   <h3>Do you find these reviews useful? Help us grow our community and write your own review!</h3>
-  <button class="btn btn-primary"><a href="/writereview" class="text-white">Write a review</a></button>
+  <a href="/writereview" class="text-white">
+    <button class="btn btn-primary">Write a review</button>
+  </a>
 </div>
-
-
-
