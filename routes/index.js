@@ -40,12 +40,18 @@ router.get('/profile', (req, res, next) =>{
 
   UserModel.find({email : email})
     .then((user)=>{
-      res.render('user/profile', {user})
-      console.log(user)
+      CommentModel.find({userId: req.session.loggedInUser._id})
+            .populate('userId')
+            .then((comment) => {
+              console.log(comment[0].title)
+              res.render('user/profile', {user, comment})
+              // res.json(comment)
+            })
     })
     .catch(()=>{
       console.log('Something is not working rendering the user')
     })
+
 })
 
 //POST Methods
@@ -121,7 +127,7 @@ router.post('/writereview', (req, res, next) => {
  }
 
   //create a review on the database
-  CommentModel.create({country, city, district, street, title, review, score, tags})
+  CommentModel.create({country, city, district, street, title, review, score, tags, userId: req.session.loggedInUser._id})
     .then(() => res.redirect('/reviews'))
     .catch((err) => next(err))
 

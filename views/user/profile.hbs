@@ -14,7 +14,9 @@
 
 <div class="container">
   <h2>Your reviews</h2>
-
+  {{#each comment}}
+  <p>{{this.title}}</p>
+  {{/each}}
   <a href="">Edit</a>
   <a href="">Delete</a>
   <h3>Great area</h3>
