@@ -199,7 +199,7 @@ router.post('/writereview', (req, res, next) => {
       }
 
       // create a review on the database
-      CommentModel.create({idGeo, address, title, review, score, tags, userId: req.session.loggedInUser._id})
+      CommentModel.create({idGeo, address, city, title, review, score, tags, userId: req.session.loggedInUser._id})
         .then(() => res.redirect('/reviews'))
         .catch((err) => next(err))
     })

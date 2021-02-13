@@ -26,40 +26,56 @@
   </form>
   <div class="viewAll">
     {{#each review}}
-      <h3>{{this.title}}</h3>
-      <div class="direction">
-        <p>Country: {{this.country}}</p>
-        <p>City: {{this.city}}</p>
-        <p>District: {{this.district}}</p>
-        <p>Street: {{this.street}}</p>
-      </div>
-      <p>Review: {{this.review}}</p>
-      <p>Score: {{this.score}}/5</p>
-      <p>Tags: {{this.tags}}</p>
-      {{#if this.picture}}
+      <div id="eachReview">
+        <h2>{{this.title}}</h3>
+        <div class="direction">
+          <h4>Country: </h4>
+          <p>{{this.country}}</p>
+          <h4>City: </h4>
+          <p>{{this.city}}</p>
+          <h4>District: </h4>
+          <p>{{this.district}}</p>
+          <h4>Address: </h4>
+          <p>{{this.address}}</p>
+        </div>
+        <h4>Review: </h4>
+        <p>{{this.review}}</p>
+        <h4>Score: </h4>
+        <p>{{this.score}}/5</p>
+        <h4>Tags: </h4>
+        <p>{{this.tags}}</p>
+        {{#if this.picture}}
 
-      <img src="{{this.picture}}" alt="picture">
-      {{/if}}
-      <br>
+        <img src="{{this.picture}}" alt="picture">
+        {{/if}}
+      </div>
+      
       <hr>
-      <br>
+    
     {{/each}}
   </div>
 </div>
 
-<div class="container">
+<div class="container example">
   <h2>Example review</h2>
   <div class="example-review">
     <h3>Title of the review</h3>
     <div class="direction">
-      <p>Country: France</p>
-      <p>City: Lyon</p>
-      <p>District: Vieux Lyon</p>
-      <p>Street: Rue Saint-Jean</p>
+      <h4>Country: </h4>
+      <p>France</p>
+      <h4>City: </h4>
+      <p>Lyon</p>
+      <h4>District: </h4>
+      <p>Vieux Lyon</p>
+      <h4>Address: </h4>
+      <p>Rue Saint-Jean</p>
     </div>
-    <p>Review: Charming area full of life, but also touristic zone</p>
-    <p>Score: 4/5</p>
-    <p>tags: Family</p>
+    <h4>Review: </h4>
+    <p>Charming area full of life, but also touristic zone</p>
+    <h4>Score: </h4>
+    <p>4/5</p>
+    <h4>Tags: </h4>
+    <p>Family</p>
     {{#if this.picture}}
 
     <img src="{{this.picture}}" alt="picture">

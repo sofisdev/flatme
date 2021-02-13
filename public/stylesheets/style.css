@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
 :root {
-  --orange : #F18F01;
+  --orange : #E68244;
+  --lightOrange: #ffd9b5;
+  --titleblue: #210A72;
+  --lightblue: #fafbff;
   --blue : #048ba8;
   --darkblue: #020122;
   --light-grey: #f1f2f6;
@@ -8,7 +13,20 @@
 
 *{
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--titleblue)
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto Slab';
+  padding-bottom: 5px;
+}
+
+h4 {
+  font-size: 1.1em;
+  font-weight: 600;
 }
 
 img{
@@ -17,8 +35,13 @@ img{
 }
 
 .mynavbar {
-  background: white;
+  background: var(--lightblue);
+  
+}
 
+.mynavbar a {
+  font-weight: 800;
+  color: var(--titleblue)
 }
 
 footer {
@@ -41,13 +64,48 @@ a{
   text-decoration: none;
 }
 
-button{
+button, .btn{
   border-radius: 5px;
-  border: none;
+  border: 3px solid var(--orange);
+  background-color: var(--lightOrange);
+  color: var(--titleblue);
+  font-weight: 600;
 }
 
+button:hover, .btn:hover{
+  border-radius: 5px;
+  border: 2px solid var(--orange);
+  background-color: var(--orange);
+  color: white;
+  font-weight: 600;
+}
 
 #map { 
   height: 180px; 
-  background-color: yellow;
+}
+
+#eachReview {
+  background-color: var(--lightblue);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+#eachReview p{
+  padding-left: 10px;
+}
+
+.example-review{
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  padding: 20px;
+  
+}
+.example-review h3, .example-review h4, .example-review p {
+  color: black;
+}
+
+
+hr {
+  background-color:black;
+  border: 3px solid var(--orange);
 }
