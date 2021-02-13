@@ -6,7 +6,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{title}}</title>
+      {{!-- Bootstrap stylesheet --}}
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+      {{!-- Leaflet stylesheet --}}
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+      {{!-- Individual stylesheet --}}
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
@@ -17,9 +23,12 @@
       <footer>
          <p>© 2021 created by <a href="https://github.com/SofSanUrb">Sofia</a> & <a href="http://martagg.com">Marta</a></p>
       </footer>
-      <!-- JavaScript Bundle with Popper -->
+      <!-- Bootstrap script -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-      <script src="/js/script.js"></script>
+      <!-- Leaflet script -->
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+      <!-- Individual script -->
+      <script type="module" src="/js/script.js"></script>
    </body>
 
 </html>
