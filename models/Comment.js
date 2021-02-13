@@ -1,6 +1,5 @@
 const { Schema, model, Mongoose } = require("mongoose");
-const geocoder = require('../utils/geocoder')
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+
 const CommentSchema = new Schema({
   idGeo: { //Geocoder will transform our address into these properties
     type: {
@@ -75,15 +74,6 @@ const CommentSchema = new Schema({
   }
 });
 
-// Geocode and create location before saving into database (pre())
-// CommentSchema.pre('save', async (next) => {
-//   const loc = await geocoder.geocode(this.address)
-//   this.idGeo = {
-//     type: 'Point',
-//     coordinates: [loc[0].longitude, loc[0].latitude],
-//     formattedAddress: loc[0].formattedAddress
-//   }
-// })
 
 const Comment = model("comment", CommentSchema);
 
