@@ -138,7 +138,7 @@ router.post('/login', (req, res, next) =>{
             res.redirect('/profile')
           }
           else {
-            res.redirect('/signup')
+            res.render('login', {msg: 'Password not correct'})
           }
         }
     })

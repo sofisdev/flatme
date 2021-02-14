@@ -4,22 +4,22 @@
 
 <div class="container">
 
-  <h1 class="mb-5 mt-5 text-center">Log in</h1>
+  
 
   <div class="section">
 
-    <form action="/login" method="POST" class="row g-3 text-center mt-3">
-      <div class="col-12">
+    <form action="/login" method="POST" class="row g-3 mt-3">
+      <div class="col-md-6">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
       </div>
 
-      <div class="col-12">
+      <div class="col-md-6">
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="password" id="password" placeholder="Password" class="form-control">
       </div>
 
-    <div class="col-12">
+    <div class="col-12 text-center">
       <button type="submit" class="mybtn btn btn-primary mt-3">Log in</button>
     </div>
 
@@ -31,6 +31,6 @@
 
 {{#if msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> {{msg}}
+  {{msg}}
 </div>
 {{/if}}
