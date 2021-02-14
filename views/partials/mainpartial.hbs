@@ -1,31 +1,32 @@
 
-<nav class="mynavbar navbar navbar-expand-lg">
-  <div class="container-fluid">
+<nav class="mynavbar navbar navbar-expand-lg navbar-light">
 
+  <div class="container-fluid">
+    
     <a class="navbar-brand" href="/">Flatme</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="mycollapse collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="mycollapse collapse navbar-collapse text-black" id="navbarSupportedContent">
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/about">about</a>
+          <a class="nav-link" href="/about">About us</a>
         </li>
         {{!-- <li class="nav-item">
           <a class="nav-link" href="/reviews">our streets</a>
         </li> --}}
-
-        <div class="btnnav">
-          <button><a href="/login">Log in</a></button>
-          <button><a href="/signup">Sign up</a></button>
-        </div>
-
       </ul>
 
-    </div>
+      <div class="btnnav">
+        <a href="/login">Log in</a>
+        <a href="/signup">Sign up</a>
+      </div>
+      
 
-  </div>
+    </div><!--end collapse navbar-->
+
+  </div> <!--end container fluid-->
 </nav>

@@ -1,28 +1,33 @@
 {{> userpartial}}
+
 <div class="container">
 
-  <h1>Hello {{user.0.name}}, welcome to your profile</h1>
+  <div class="section">
+
+    <h1>Hello {{user.0.name}}, welcome to your profile</h1>
+
+    <div class="container">
+      <h6>Name : {{user.0.name}}</h6>
+      <h6>Last Name : {{user.0.lastname}}</h6>
+      <h6>Email : {{user.0.email}}</h6>
+      <h6>Hobbies : {{user.0.hobbies}}</h6>
+      <h6>Country : {{user.0.country}}</h6>
+  
+
+      <a href="/profile/edit">Edit</a>
+    </div>
 
   <div class="container">
-    <h6>Name : {{user.0.name}}</h6>
-    <h6>Last Name : {{user.0.lastname}}</h6>
-    <h6>Email : {{user.0.email}}</h6>
-    <h6>Hobbies : {{user.0.hobbies}}</h6>
-    <h6>Country : {{user.0.country}}</h6>
- 
+    <h2>Your reviews</h2>
+    {{#each comment}}
+    <p>{{this.title}}</p>
+    {{/each}}
+    <a href="">Edit</a>
+    <a href="">Delete</a>
+    <h3>Great area</h3>
+    <p>Spain, Barcelona, Gracia, Carrer Verdi</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aliquam sint nulla, dolores tempora labore provident ad officiis veritatis, facere cupiditate natus adipisci consectetur totam excepturi minus similique molestiae iusto?</p>
 
-    <a href="/profile/edit">Edit</a>
   </div>
-
-<div class="container">
-  <h2>Your reviews</h2>
-  {{#each comment}}
-  <p>{{this.title}}</p>
-  {{/each}}
-  <a href="">Edit</a>
-  <a href="">Delete</a>
-  <h3>Great area</h3>
-  <p>Spain, Barcelona, Gracia, Carrer Verdi</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aliquam sint nulla, dolores tempora labore provident ad officiis veritatis, facere cupiditate natus adipisci consectetur totam excepturi minus similique molestiae iusto?</p>
 
 </div>
