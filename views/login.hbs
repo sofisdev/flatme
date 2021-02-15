@@ -21,6 +21,8 @@
 
     <div class="col-12 text-center">
       <button type="submit" class="mybtn btn btn-primary mt-3">Log in</button>
+      <span class="g-signin2" data-onsuccess="onSignIn"></span>
+      <a href="/logout" onclick="signOut();">Log out</a>
     </div>
 
     </form>
@@ -28,6 +30,8 @@
   </div>
   <br>
 </div>
+
+
 
 {{#if msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">

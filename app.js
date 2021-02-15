@@ -9,6 +9,7 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
@@ -16,6 +17,8 @@ hbs.registerPartials(__dirname + '/views/partials')
 
 
 const app = express();
+app.use(express.json());
+
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("./config")(app);
@@ -30,6 +33,8 @@ app.locals.title = `${capitalized(projectName)}`;
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose')
+
+
 
 app.use(session({
   secret: 'NotMyAge',
@@ -46,6 +51,7 @@ app.use(session({
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
+const cookieParser = require("cookie-parser");
 app.use("/", index);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
