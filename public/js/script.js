@@ -11,6 +11,12 @@ document.addEventListener(
 let map = L.map('map').setView([40.341705, -17.968551], 1.2)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 
+let locIcon = L.icon({
+  iconUrl: '../images/location.png',
+  iconSize: [19, 39],
+  iconAnchor: [11, 39],
+});
+
 //get coordinates from client-side
 const MONGO_URI = "http://localhost:27017/flatme/comments";
 let coordArr =[] 
@@ -23,7 +29,11 @@ axios.get('http://localhost:3000/flatmecoordinates')
       }
     });
     console.log(coordArr)
+    for(let i = 0; i < coordArr.length; i++) {  
+      let marker = new L.Marker([coordArr[i][1], coordArr[i][0]], {icon: locIcon}).addTo(map)
+    }
   })
   .catch((err) => console.log(err))
+
 
 
