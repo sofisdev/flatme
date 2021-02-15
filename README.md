@@ -1,5 +1,7 @@
 # flatme
 
+[flatme Logo](/public/images/flatmelogo.png)
+
 ## Description
 
 Readme is a platform that gather street and district reviews over different countries, with the goal of helping people that need to move to an area or a city they don't know, have as much information as possible.
