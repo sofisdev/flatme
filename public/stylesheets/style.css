@@ -35,7 +35,7 @@ footer {
 }
 
 .myhero {
-  background-image: url(../images/door.jpg);
+  background-image: url(../images/background.jpg);
   background-size: cover;
   width: 100%;
   height: 85vh;
@@ -44,6 +44,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:black;
 }
 
 a{
