@@ -257,7 +257,7 @@ router.post('/reviews', (req, res, next) => {
   let filter = {}
 
   if(score && tags) {
-  filter = {$and:[{score: score}, {tags: tags}]}
+  filter = {$and:[{score: score}, {tags: tags} ]}
   }
   else if (score){
     filter = {score:score}
@@ -276,6 +276,11 @@ router.post('/reviews', (req, res, next) => {
       console.log(result)
     })
     .catch(() => res.redirect('/reviews'))
+})
+
+router.get('/flatmecoordinates', (req, res, next) =>{
+CommentModel.find()
+  .then((result) => res.json(result))
 })
 
 //Export Router

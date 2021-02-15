@@ -24,6 +24,10 @@ img{
   height: 60px;
 }
 
+#mainLogo {
+ width: 110px;
+ height: auto;
+}
 
 footer {
   text-align: center;
@@ -158,4 +162,7 @@ i:hover {
   width: 400px;
   padding: 10px;
   margin: 10px;
+}
+#map {
+  height: 400px;
 }
