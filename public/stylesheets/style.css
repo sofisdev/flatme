@@ -24,6 +24,10 @@ img{
   height: 60px;
 }
 
+#mainLogo {
+ width: 110px;
+ height: auto;
+}
 
 footer {
   text-align: center;
