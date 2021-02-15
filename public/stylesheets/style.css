@@ -114,3 +114,48 @@ nav{
   flex-direction: column;
   align-items: center;
 }
+
+.userlogo{
+  margin: 10px;
+}
+
+.logo{
+  width: 100px;
+  height: auto;
+}
+
+.myinfo{
+  display: flex;
+  justify-content: space-between;
+}
+
+i {
+  color: var(--blue);
+}
+
+i:hover {
+  color: var(--orange);
+}
+
+.title {
+  color: var(--blue);
+}
+
+.why-section{
+  display: flex;
+  align-items: baseline;
+}
+
+.why-logo{
+  width: 70px;
+  height: auto;
+}
+
+.why-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  padding: 10px;
+  margin: 10px;
+}

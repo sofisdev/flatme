@@ -96,7 +96,6 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
 
 router.get('/logout', checkLoggedInUser, (req,res,next)=>{
   req.session.destroy()
-  res.clearCookie('session-token')
   res.redirect('/')
 })
 
@@ -184,8 +183,8 @@ router.post('/login', (req, res, next) =>{
           }
         }
     })
-    .catch(()=>{
-      console.log('Working working')
+    .catch((err)=>{
+      next(err)
     })
 })
 
@@ -207,6 +206,20 @@ router.post('/profile/edit', (req, res, next)=>{
     .then(() => res.redirect('/profile'))
     .catch(() => console.log('Cannot edit'))
   }
+})
+
+router.post('/reviews/:id/delete/', (req, res, next)=>{
+
+  let id = req.params.id
+
+  CommentModel.findByIdAndDelete(id)
+    .then(()=>{
+      console.log('deleting')
+      res.redirect('/profile')
+    })
+    .catch(()=>{
+      console.log('Not possible to delete')
+    })
 })
 
 router.post('/writereview', (req, res, next) => {

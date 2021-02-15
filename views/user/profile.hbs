@@ -2,20 +2,24 @@
 
 <div class="container">
 
+  <h1 class="m-4 title">Hello {{user.0.name}}, welcome to your profile</h1>
+
   <div class="section">
 
-    <h1>Hello {{user.0.name}}, welcome to your profile</h1>
-
-    <div class="container">
-      <h6>Name : {{user.0.name}}</h6>
-      <h6>Last Name : {{user.0.lastname}}</h6>
-      <h6>Email : {{user.0.email}}</h6>
-      <h6>Hobbies : {{user.0.hobbies}}</h6>
-      <h6>Country : {{user.0.country}}</h6>
   
-
-      <a href="/profile/edit">Edit</a>
-      <a href="/logout" class="m-4">Log out</a>
+    <div class="myinfo container">
+      <div class="info">
+        <h6>Name : {{user.0.name}}</h6>
+        <h6>Last Name : {{user.0.lastname}}</h6>
+        <h6>Email : {{user.0.email}}</h6>
+        <h6>Hobbies : {{user.0.hobbies}}</h6>
+        <h6>Country : {{user.0.country}}</h6>
+      </div>
+  
+      <div class="controlbtn">
+        <a href="/profile/edit"><i class="fas fa-edit"></i></a>
+        <a href="/logout" class="m-4"><i class="myicon fas fa-sign-out-alt"></i></a>
+      </div>
     </div>
   </div>
 
@@ -28,11 +32,11 @@
       {{#each comment}}
         <h4>{{this.title}}</h4>
         <p>{{this.review}}</p>
-
+        <form action="/reviews/{{this._id}}/delete" method="POST">
+          <button type="submit" class="mybtn btn">Delete</button>
+        </form>
       {{/each}}
 
-      <a href="">Edit</a>
-      <a href="">Delete</a>
     </div>
     {{/if}}
   
