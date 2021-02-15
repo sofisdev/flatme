@@ -1,40 +1,37 @@
 
-<nav class="mynavbar navbar navbar-expand-lg">
-  <div class="container-fluid">
+<nav class="mynavbar navbar navbar-expand-lg navbar-light">
 
-    <a class="navbar-brand" href="/">Flatme</a>
+  <div class="container-fluid">
+    
+    <a class="brand navbar-brand" href="/"><img src="images/flatmelogo.png" alt=""></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="mycollapse collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="mycollapse collapse navbar-collapse text-black" id="navbarSupportedContent">
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/about">about</a>
+          <a class="nav-link" href="/about">About us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/reviews">our streets</a>
+          <a class="nav-link" href="/reviews">View reviews</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="/writereview">write a review</a>
+          <a class="nav-link" href="/writereview">Write a reviews</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="/profile">profile</a>
+          <a class="nav-link" href="/profile">Profile</a>
         </li>
-
-        <div class="btnnav">
-          <a href="/logout">
-            <button class="btn">Log out</button>
-          </a>
-        </div>
-
       </ul>
 
-    </div>
+      <div class="btnnav">
+        <a href="/logout" onclick="signOut();">Log out</a>
+      </div>
+      
 
-  </div>
+    </div><!--end collapse navbar-->
+
+  </div> <!--end container fluid-->
 </nav>

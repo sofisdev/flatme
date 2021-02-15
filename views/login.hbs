@@ -1,22 +1,40 @@
 {{> mainpartial}}
 
-<h1>Log in</h1>
+
 
 <div class="container">
-  <form action="/login" method="POST">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" name="email" id="email" placeholder="Email">
 
-    <label for="password" class="form-label">Password</label>
-    <input type="password" name="password" id="password" placeholder="Password">
+  
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="section">
+
+    <form action="/login" method="POST" class="row g-3 mt-3">
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+      </div>
+
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+      </div>
+
+    <div class="col-12 text-center">
+      <button type="submit" class="mybtn btn btn-primary mt-3">Log in</button>
+      <span class="g-signin2" data-onsuccess="onSignIn"></span>
+      <a href="/logout" onclick="signOut();">Log out</a>
+    </div>
+
+    </form>
+
+  </div>
   <br>
 </div>
 
+
+
 {{#if msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> {{msg}}
+  {{msg}}
 </div>
 {{/if}}

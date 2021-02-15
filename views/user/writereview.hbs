@@ -1,42 +1,53 @@
 {{> userpartial}}
 
-<h1>Write a review</h1>
-
 <div class="container">
   <form method="POST" action="/writereview">
-    <label for="city" class="form-label">City</label>
-    <input type="text" name="city" id="city">
+    <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input type="text" name="city" id="city" class="form-control">
+    </div>
 
-    <label for="address" class="form-label">ddress</label>
-    <input type="text" name="address" id="address">
+    <div class="col-md-6">
+      <label for="address" class="form-label">ddress</label>
+      <input type="text" name="address" id="address">
+    </div>
 
-    <label for="title" class="form-label">Title</label>
-    <input type="text" name="title" id="title">
+      <div class="col-12">
+        <label for="review" class="form-label">Your review</label>
+        <input type="text" name="review" id="review" class="form-control">
+      </div>
 
-    <label for="review" class="form-label">Your review</label>
-    <input type="text" name="review" id="review">
+      <div class="col-md-6">
+        <label for="score" class="form-label">Score out of 5</label> 
+        <select id="score" name="score" class="form-select" aria-label=".form-select-sm example">
+          <option selected></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
 
-    <label for="score" class="form-label">Score out of 5</label> 
-    <select id="score" name="score" class="form-select form-select-sm" aria-label=".form-select-sm example">
-      <option selected></option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
+      <div class="col-md-6">
+        <label for="tags" class="form-label">Select a label</label> 
+        <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example">
+          <option selected></option>
+            <option value="Family">Family</option>
+            <option value="Gay-friendly">Gay-friendly</option>
+            <option value="Students">Students</option>
+        </select>
+      </div>
+        
+      <div class="col-12 text-center">
+        <button type="submit" class="mybtn btn btn-primary">Submit</button>
+      </div>
+      </form>
+      <br>
+    </div>
+  
+  </div>
 
-    <label for="tags" class="form-label">Select a label</label> 
-    <select id="tags" name="tags" class="form-select form-select-sm" aria-label=".form-select-sm example">
-      <option selected></option>
-        <option value="Family">Family</option>
-        <option value="Gay-friendly">Gay-friendly</option>
-        <option value="Students">Students</option>
-    </select>
-    
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <br>
 </div>
 
 {{#if msg}}

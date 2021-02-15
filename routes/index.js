@@ -6,6 +6,11 @@ const geocoder = require('../utils/geocoder');
 
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
+//google auth
+const {OAuth2Client} = require('google-auth-library');
+const CLIENT_ID = '136668872566-suma2arehmhvb8ehtt65v8queg50jggk.apps.googleusercontent.com'
+const client = new OAuth2Client(CLIENT_ID);
+
 const checkLoggedInUser = (req, res, next) =>{
   if(req.session.loggedInUser){
     next()
@@ -48,14 +53,16 @@ router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
     .then((result) => {
       res.render('user/reviews', {review: result})
     })
-    .catch()
+    .catch((error)=>{
+      next(error)
+    })
 })
 
-router.get('/writereview', (req, res, next) =>{
+router.get('/writereview',checkLoggedInUser, (req, res, next) =>{
   res.render('user/writereview')
 })
 
-router.get('/profile', (req, res, next) =>{
+router.get('/profile',checkLoggedInUser, (req, res, next) =>{
 
   let email = req.session.loggedInUser.email
 
@@ -89,6 +96,7 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
 
 router.get('/logout', checkLoggedInUser, (req,res,next)=>{
   req.session.destroy()
+  res.clearCookie('session-token')
   res.redirect('/')
 })
 
@@ -134,12 +142,33 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) =>{
+
+  let token = req.body.token;
+
+  async function verify() {
+
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+  }
+
+  verify()
+    .then(()=>{
+      res.cookie('session-token', token);
+      res.send('success')
+    })
+    .catch(console.error);
+
   const {email, password} = req.body
 
-  if (!email.length || !password.length ) {
-    res.render('login', {msg: 'Please enter all fields'})
-    return;
-  }
+  // if (!email.length || !password.length ) {
+  //   res.render('login', {msg: 'Please enter all fields'})
+  //   return;
+  // } //no se porque me da error ahora, dice que no se puede leer legth de undefined
 
   UserModel.findOne({email : email})
     .then((result)=>{
@@ -150,7 +179,7 @@ router.post('/login', (req, res, next) =>{
             res.redirect('/profile')
           }
           else {
-            res.redirect('/signup')
+            res.render('login', {msg: 'Seems like your forgot your password....'})
           }
         }
     })

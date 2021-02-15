@@ -1,32 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
 :root {
   --orange : #E68244;
-  --lightOrange: #ffd9b5;
-  --titleblue: #210A72;
-  --lightblue: #fafbff;
-  --blue : #048ba8;
+  --blue : #210A72;
   --darkblue: #020122;
   --light-grey: #f1f2f6;
   --white: #fbfbff;
+  --lightOrange: #ffd9b5;
+  --lightblue: #fafbff;
 }
 
 *{
   margin: 0;
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--titleblue)
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2, h3 {
-  font-family: 'Roboto Slab';
-  padding-bottom: 5px;
-}
-
-h4 {
-  font-size: 1.1em;
-  font-weight: 600;
+.brand{
+  font-family: 'Comfortaa', cursive;
 }
 
 img{
@@ -34,24 +24,16 @@ img{
   height: 60px;
 }
 
-.mynavbar {
-  background: var(--lightblue);
-  
-}
-
-.mynavbar a {
-  font-weight: 800;
-  color: var(--titleblue)
-}
 
 footer {
   text-align: center;
+  margin: 15px;
 }
 
 .myhero {
   background-image: url(../images/door.jpg);
-  background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
   height: 85vh;
   text-align: center;
   display: flex;
@@ -64,48 +46,71 @@ a{
   text-decoration: none;
 }
 
-button, .btn{
-  border-radius: 5px;
-  border: 3px solid var(--orange);
-  background-color: var(--lightOrange);
-  color: var(--titleblue);
-  font-weight: 600;
+nav{
+  background-color: var(--light-grey);
 }
 
-button:hover, .btn:hover{
+.btnnav > a{
+  background-color: var(--blue);
+  color: white;
+  padding: 10px;
   border-radius: 5px;
-  border: 2px solid var(--orange);
+}
+
+.btnnav > a:hover{
+  background-color: var(--orange);
+}
+
+.joinbtn{
+  background-color: var(--blue);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.joinbtn:hover{
   background-color: var(--orange);
   color: white;
-  font-weight: 600;
 }
 
-#map { 
-  height: 180px; 
+.joinbtn-div {
+  margin: 40px;
 }
 
-#eachReview {
-  background-color: var(--lightblue);
-  border-radius: 15px;
-  padding: 20px;
+.mybtn {
+  background-color: var(--blue);
+  color: white;
+  border: none;
 }
 
-#eachReview p{
-  padding-left: 10px;
+.mybtn:hover{
+  background-color: var(--orange);
+  color: white;
 }
 
-.example-review{
+.section {
   background-color: var(--light-grey);
-  border-radius: 15px;
-  padding: 20px;
-  
-}
-.example-review h3, .example-review h4, .example-review p {
-  color: black;
+  margin: 15px 0px;
+  padding: 40px;
+  border-radius: 10px;
 }
 
+.team {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
 
-hr {
-  background-color:black;
-  border: 3px solid var(--orange);
+.team-img{
+  border: none;
+  border-radius: 500px;
+  width: 300px;
+  height: 100%;
+  margin: 10px;
+}
+
+.team-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
