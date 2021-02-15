@@ -17,3 +17,5 @@ async function getReviews() {
 
 getReviews()
 
+module.exports = map
+
