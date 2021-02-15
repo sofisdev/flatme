@@ -223,16 +223,16 @@ router.post('/reviews/:id/delete/', (req, res, next)=>{
 })
 
 router.post('/writereview', (req, res, next) => {
-  const {city, address, title, review, score, tags} = req.body;
+  const {city, address, zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
-   if (!city.length && !title.length || !address.length || !review.length || !score.length ) {
+   if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
      res.render('signup.hbs', {msg: 'Please enter all fields'})
      return;
      }
 
   //transform address and city into coordinates and create element in the database
-  geocoder.geocode(`${address}  ${city}`)
+  geocoder.geocode({address: address, city: city, zipcode: zipcode})
     .then((data) => {
       //update coordinates
       let idGeo = {
@@ -242,13 +242,37 @@ router.post('/writereview', (req, res, next) => {
       }
 
       // create a review on the database
-      CommentModel.create({idGeo, address, city, title, review, score, tags, userId: req.session.loggedInUser._id})
-        .then(() => res.redirect('/reviews'))
+      CommentModel.create({idGeo, address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
+        .then(() => res.redirect('/profile'))
         .catch((err) => next(err))
     })
 })
 
-let arr = []
+router.post('/publishreview', (req, res, next) => {
+  const {city, address,zipcode, title, review, score, tags} = req.body;
+  
+   //check for all required filled in values
+   if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
+    res.render('signup.hbs', {msg: 'Please enter all fields'})
+    return;
+    }
+
+  //transform address and city into coordinates and create element in the database
+  geocoder.geocode({address: address, city: city, zipcode: zipcode})
+   .then((data) => {
+     //update coordinates
+     let idGeo = {
+       type: 'Point',
+       coordinates: [data[0].longitude, data[0].latitude],
+       formattedAddress: data[0].formattedAddress
+     }
+
+     // create a review on the database
+     CommentModel.create({idGeo, address, city, zipcode, title, published: true, review, score, tags, userId: req.session.loggedInUser._id})
+       .then(() => res.redirect('/profile'))
+       .catch((err) => next(err))
+   })
+})
 
 router.post('/reviews', (req, res, next) => {
   const {score, tags} = req.body;
@@ -257,7 +281,7 @@ router.post('/reviews', (req, res, next) => {
   let filter = {}
 
   if(score && tags) {
-  filter = {$and:[{score: score}, {tags: tags} ]}
+  filter = {$and:[{score: score}, {tags: tags}]}
   }
   else if (score){
     filter = {score:score}
@@ -268,12 +292,7 @@ router.post('/reviews', (req, res, next) => {
 
   CommentModel.find(filter)
     .then((result) => {
-      result.forEach(elem => {
-        arr.push(idGeo.coordinates)
-      });
-      console.log(arr)
       res.render('user/reviews', {review: result})
-      console.log(result)
     })
     .catch(() => res.redirect('/reviews'))
 })
@@ -284,7 +303,4 @@ CommentModel.find()
 })
 
 //Export Router
-module.exports = {
-  router,
-  arr
-}
+module.exports = router
