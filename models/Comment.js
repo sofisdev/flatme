@@ -1,28 +1,42 @@
 const { Schema, model, Mongoose } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const CommentSchema = new Schema({
-  idGeo: {
-    type: String,
-    required: true,
-    default: '0'
+  idGeo: { //Geocoder will transform our address into these properties
+    type: {
+      type: String, 
+      enum: ['Point'], //GeoJSON point
+    },
+    coordinates: {
+      type: [Number],
+      required: '2dsphere'
+    },
+    formattedAddress: String
   },
-  country: {
-    type: String,
-    required:true
-  },
-  city: {
-    type: String,
-    required:true
-  },
-  district: {
+  address: {
     type: String,
     required:true
   },
-  street: {
-    type: String,
-    required:true
+  dateRegister:{
+    type: Date,
+    default: Date.now,
+    required: true
   },
+  // country: {
+  //   type: String,
+  //   required:true
+  // },
+  // city: {
+  //   type: String,
+  //   required:true
+  // },
+  // district: {
+  //   type: String,
+  //   required:true
+  // },
+  // street: {
+  //   type: String,
+  //   required:true
+  // },
   title: {
     type: String,
     required: true
@@ -46,12 +60,20 @@ const CommentSchema = new Schema({
     default:"../public/images/favicon.ico",
     required:true
   },
+
+  status: {
+    type:String,
+    required:true,
+    enum:['draft', 'published'],
+    default: 'draft'
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
     required:true
   }
 });
+
 
 const Comment = model("comment", CommentSchema);
 

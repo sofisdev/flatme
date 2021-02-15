@@ -5,7 +5,7 @@
   <div class="section">
 
     <h2>View all reviews</h2>
-
+    <div id="map"></div>
     <form method="POST" action="/reviews" class="row g-3">
 
       <div class="col-md-6">
@@ -85,7 +85,27 @@
 
     {{/each}}
 
-  
+<div class="container example">
+  <h2>Example review</h2>
+  <div class="example-review">
+    <h3>Title of the review</h3>
+    <div class="direction">
+      <h4>Country: </h4>
+      <p>France</p>
+      <h4>City: </h4>
+      <p>Lyon</p>
+      <h4>District: </h4>
+      <p>Vieux Lyon</p>
+      <h4>Address: </h4>
+      <p>Rue Saint-Jean</p>
+    </div>
+    <h4>Review: </h4>
+    <p>Charming area full of life, but also touristic zone</p>
+    <h4>Score: </h4>
+    <p>4/5</p>
+    <h4>Tags: </h4>
+    <p>Family</p>
+    {{#if this.picture}}
 
 <div class="container section">
 

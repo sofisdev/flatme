@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.js')
-const CommentModel = require('../models/Comment.js')
+const CommentModel = require('../models/Comment.js');
+const geocoder = require('../utils/geocoder');
+
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 //google auth
@@ -18,6 +20,15 @@ const checkLoggedInUser = (req, res, next) =>{
   }
 }
 
+//Import leaflet
+global.window = { screen:{} }
+global.document = {
+  documentElement: { style: {} },
+  getElementsByTagName: () => { return {} },
+  createElement: () => { return {} }
+}
+global.navigator = { userAgent: 'nodejs', platform: 'nodejs'}
+const L = require('leaflet');
 
 //GET Methods
 router.get("/", (req, res, next) => {
@@ -37,6 +48,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
+  
   CommentModel.find()
     .then((result) => {
       res.render('user/reviews', {review: result})
@@ -198,21 +210,32 @@ router.post('/profile/edit', (req, res, next)=>{
 })
 
 router.post('/writereview', (req, res, next) => {
-  const {country, city, district, street, title, review, score, tags} = req.body;
+  const {city, address, title, review, score, tags} = req.body;
   
    //check for all required filled in values
-   if (!country.length || !city.length || !district.length || !title.length ||
-    !street.length || !review.length || !score.length ) {
+   if (!city.length && !title.length || !address.length || !review.length || !score.length ) {
      res.render('signup.hbs', {msg: 'Please enter all fields'})
      return;
      }
 
-  //create a review on the database
-  CommentModel.create({country, city, district, street, title, review, score, tags, userId: req.session.loggedInUser._id})
-    .then(() => res.redirect('/reviews'))
-    .catch((err) => next(err))
+  //transform address and city into coordinates and create element in the database
+  geocoder.geocode(`${address}  ${city}`)
+    .then((data) => {
+      //update coordinates
+      let idGeo = {
+        type: 'Point',
+        coordinates: [data[0].longitude, data[0].latitude],
+        formattedAddress: data[0].formattedAddress
+      }
 
+      // create a review on the database
+      CommentModel.create({idGeo, address, city, title, review, score, tags, userId: req.session.loggedInUser._id})
+        .then(() => res.redirect('/reviews'))
+        .catch((err) => next(err))
+    })
 })
+
+let arr = []
 
 router.post('/reviews', (req, res, next) => {
   const {score, tags} = req.body;
@@ -232,6 +255,10 @@ router.post('/reviews', (req, res, next) => {
 
   CommentModel.find(filter)
     .then((result) => {
+      result.forEach(elem => {
+        arr.push(idGeo.coordinates)
+      });
+      console.log(arr)
       res.render('user/reviews', {review: result})
       console.log(result)
     })
@@ -239,4 +266,7 @@ router.post('/reviews', (req, res, next) => {
 })
 
 //Export Router
-module.exports = router;
+module.exports = {
+  router,
+  arr
+}

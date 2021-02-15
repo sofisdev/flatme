@@ -16,8 +16,10 @@
     "google-auth-library": "^6.1.6",
     "googleapis": "^67.0.0",
     "hbs": "^4.1.1",
+    "leaflet": "^1.7.1",
     "mongoose": "^5.11.15",
     "morgan": "^1.10.0",
+    "node-geocoder": "^3.27.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
