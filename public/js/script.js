@@ -17,11 +17,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 
 
 // getReviews()
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/flatme";
+// const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/flatme";
 
-axios.get(MONGO_URI/comments)
-  .then((data) => console.log(data))
+// axios.get(MONGO_URI/comments)
+//   .then((data) => console.log(data))
 
 
-module.exports = map
+// module.exports = map
 
