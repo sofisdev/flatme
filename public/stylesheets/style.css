@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
+
 :root {
   --orange : #E68244;
   --blue : #210A72;
@@ -34,6 +35,20 @@ footer {
   margin: 15px;
 }
 
+.my-link{
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.my-link:hover{
+  border-bottom-style: solid;
+  color: black;
+  border-color: var(--orange);
+}
+
+
 .myhero {
   background-image: url(../images/background.jpg);
   background-size: cover;
@@ -53,6 +68,7 @@ a{
 
 nav{
   background-color: var(--light-grey);
+  justify-content: baseline;
 }
 
 .btnnav > a{
@@ -84,12 +100,17 @@ nav{
 
 .mybtn {
   background-color: var(--blue);
-  color: white;
   border: none;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .mybtn:hover{
   background-color: var(--orange);
+  color: white;
+}
+
+.mybtn > a {
   color: white;
 }
 
@@ -108,8 +129,8 @@ nav{
 
 .team-img{
   border: none;
-  border-radius: 500px;
-  width: 300px;
+  border-radius: 5px;
+  width: 200px;
   height: 100%;
   margin: 10px;
 }
@@ -117,7 +138,13 @@ nav{
 .team-card{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  max-width: 400px;
+}
+
+.team-card > p {
+  text-align: justify;
 }
 
 .userlogo{
@@ -132,6 +159,10 @@ nav{
 .myinfo{
   display: flex;
   justify-content: space-between;
+}
+
+.mytext{
+  text-align: justify;
 }
 
 i {
@@ -164,6 +195,19 @@ i:hover {
   padding: 10px;
   margin: 10px;
 }
+
 #map {
   height: 400px;
+}
+
+
+@media (max-width: 600px) and (orientation: portrait){
+  .team{
+    flex-direction: column;
+  }
+
+  .why-section{
+    flex-direction: column;
+    align-items: center;
+  }
 }
