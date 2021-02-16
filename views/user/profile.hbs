@@ -56,13 +56,14 @@
                 <p>score: {{this.score}}/5</p>
                 <p>{{this.address}}</p>
                 <p>{{this.review}}</p>
-              </div>
+              
               <a href="/reviews/{{this._id}}/editreview">
                 <button type="submit" class="mybtn btn text-white">Edit</button>
               </a>
               <a href="/reviews/{{this._id}}/delete">
                 <button type="submit" class="mybtn btn text-white">Delete</button>
               </a>
+              </div>
             {{/unless}}
           {{/each}}
         </div>
