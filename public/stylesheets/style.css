@@ -207,6 +207,11 @@ i:hover {
   height: 400px;
 }
 
+.contact > a {
+  margin: 10px;
+}
+
+
 
 @media (max-width: 600px) and (orientation: portrait){
   .team{
@@ -217,4 +222,6 @@ i:hover {
     flex-direction: column;
     align-items: center;
   }
+
+
 }
