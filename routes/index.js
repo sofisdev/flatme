@@ -20,16 +20,6 @@ const checkLoggedInUser = (req, res, next) =>{
   }
 }
 
-//Import leaflet
-global.window = { screen:{} }
-global.document = {
-  documentElement: { style: {} },
-  getElementsByTagName: () => { return {} },
-  createElement: () => { return {} }
-}
-global.navigator = { userAgent: 'nodejs', platform: 'nodejs'}
-const L = require('leaflet');
-
 //GET Methods
 router.get("/", (req, res, next) => {
   res.render("index");
