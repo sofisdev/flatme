@@ -32,9 +32,16 @@
       {{#each comment}}
         <h4>{{this.title}}</h4>
         <p>{{this.review}}</p>
+        {{#unless this.published}}
+        <p id="draftStatus">DRAFT</p>
+        <form action="/reviews/{{this._id}}/editreview" method="POST">
+          <button type="submit" class="mybtn btn text-white">Edit</button>
+        </form>
+        {{/unless}}
         <form action="/reviews/{{this._id}}/delete" method="POST">
           <button type="submit" class="mybtn btn text-white">Delete</button>
         </form>
+        
       {{/each}}
 
     </div>

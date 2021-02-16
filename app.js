@@ -37,8 +37,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose')
 
-
-
 app.use(session({
   secret: 'NotMyAge',
   saveUninitialized: false, 
@@ -53,9 +51,9 @@ app.use(session({
 }));
 
 // 👇 Start handling routes here
-const {router} = require("./routes/index");
+const index = require("./routes/index");
 const cookieParser = require("cookie-parser");
-app.use("/", router);
+app.use("/", index);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

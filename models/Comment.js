@@ -16,27 +16,19 @@ const CommentSchema = new Schema({
     type: String,
     required:true
   },
+  zipcode:{
+    type: String,
+    required:true
+  },
   dateRegister:{
     type: Date,
     default: Date.now,
     required: true
   },
-  // country: {
-  //   type: String,
-  //   required:true
-  // },
-  // city: {
-  //   type: String,
-  //   required:true
-  // },
-  // district: {
-  //   type: String,
-  //   required:true
-  // },
-  // street: {
-  //   type: String,
-  //   required:true
-  // },
+  city: {
+    type: String,
+    required:true
+  },
   title: {
     type: String,
     required: true
@@ -60,12 +52,10 @@ const CommentSchema = new Schema({
     default:"../public/images/favicon.ico",
     required:true
   },
-
-  status: {
-    type:String,
+  published: {
+    type:Boolean,
     required:true,
-    enum:['draft', 'published'],
-    default: 'draft'
+    default: false
   },
   userId: {
     type: Schema.Types.ObjectId,

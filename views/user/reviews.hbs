@@ -40,49 +40,37 @@
   <div id="map"></div>
 
     {{#each review}}
-    <div class="section container viewAll">
+      {{#if this.published}}
+      <div class="section container viewAll">
 
-      <h2 class="mb-3">{{this.title}}</h2>
+        <h2 class="mb-3">{{this.title}}</h2>
 
-      <div class="container directions">
-        <div class="row row-cols-3">
-          <div class="col mb-3">Country : {{this.country}}</div>
-          <div class="col">City: {{this.city}}</div>
-          <div class="col">District: {{this.district}}</div>
-          <div class="col">Street: {{this.street}}</div>
-          <div class="col">Score: {{this.score}}</div>
-          <div class="col">Tags: {{this.tags}}</div>
+        <div class="container directions">
+          <div class="row row-cols-3">
+            <div class="col">City: {{this.city}}</div>
+            <div class="col">Address: {{this.address}}</div>
+            <div class="col">Score: {{this.score}}</div>
+            <div class="col">Tags: {{this.tags}}</div>
+            <div class="col">Status: {{this.status}}</div>
+          </div>
         </div>
-      </div>
 
-      <hr>
+        <hr>
 
-      <div class="container mt-4">
-        <p>Review: 
-          <br>
-          <br>
-          {{this.review}}</p>
-      </div>
+        <div class="container mt-4">
+          <p>Review: 
+            <br>
+            <br>
+            {{this.review}}</p>
+        </div>
 
+        {{#if this.picture}}
 
-      {{!-- <div class="direction">
-        <p>Country: {{this.country}}</p>
-        <p>City: {{this.city}}</p>
-        <p>District: {{this.district}}</p>
-        <p>Street: {{this.street}}</p>
-      </div> --}}
-
-      {{!-- <p>Review: {{this.review}}</p>
-      <p>Score: {{this.score}}/5</p>
-      <p>Tags: {{this.tags}}</p> --}}
-
-      {{#if this.picture}}
-
-      <img src="{{this.picture}}" alt="picture">
+        <img src="{{this.picture}}" alt="picture">
 
       {{/if}}
     </div>
-
+    {{/if}} 
     {{/each}}
 
 
