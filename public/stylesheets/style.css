@@ -183,7 +183,8 @@ nav{
 
 #draftStatus{
   color: var(--blue);
-  background-color: var(--orange);
+  background-color: var(--lightOrange);
+  padding: 2px;
 }
 
 i {
@@ -221,6 +222,21 @@ i:hover {
   height: 400px;
 }
 
+.accordion-button:not(.collapsed) {
+  background-color: var(--lightblue);
+  color:var(--blue)
+}
+
+.accordion-button:focus {
+  z-index: 3;
+  border-color: var(--lightOrange);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--lightOrange);
+}
+
+.draftcomment {
+  margin-bottom: 10px;
+}
 .contact > a {
   margin: 10px;
 }
