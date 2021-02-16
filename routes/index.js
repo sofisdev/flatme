@@ -91,7 +91,7 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
     })
 })
 
-router.get('/review/:id/edit/', (req,res,next)=>{
+router.get('/review/:id/edit/',checkLoggedInUser, (req,res,next)=>{
 
   let id = req.params.id
 
@@ -104,12 +104,7 @@ router.get('/review/:id/edit/', (req,res,next)=>{
     })
 })
 
-router.get('/logout', checkLoggedInUser, (req,res,next)=>{
-  req.session.destroy()
-  res.redirect('/')
-})
-
-router.get('/reviews/:id/delete/', (req, res, next)=>{
+router.get('/reviews/:id/delete/', checkLoggedInUser, (req, res, next)=>{
 
   let id = req.params.id
 
@@ -121,6 +116,11 @@ router.get('/reviews/:id/delete/', (req, res, next)=>{
     .catch(()=>{
       console.log('Not possible to delete')
     })
+})
+
+router.get('/logout', checkLoggedInUser, (req,res,next)=>{
+  req.session.destroy()
+  res.redirect('/')
 })
 
 //POST Methods

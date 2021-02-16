@@ -27,6 +27,7 @@
   color: var(--blue);
 }
 
+
 img{
   width: 150px;
   height: 60px;
@@ -44,15 +45,15 @@ footer {
 
 .my-link{
   color: black;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 20px;
+  margin: 30px;
 }
 
 .my-link:hover{
-  border-bottom-style: solid;
-  color: black;
-  border-color: var(--orange);
+  text-decoration: overline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 5px;
+  color: #210A72;
+  transition: 0.90s;
 }
 
 
@@ -75,7 +76,6 @@ a{
 
 nav{
   background-color: var(--light-grey);
-  justify-content: baseline;
 }
 
 .btnnav > a{
