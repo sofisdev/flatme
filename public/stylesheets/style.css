@@ -168,8 +168,22 @@ nav{
   justify-content: space-between;
 }
 
+.myinfo span{
+  display:flex;
+  align-items: baseline;
+}
+
+.myinfo h6{
+  margin-left: 15px;
+}
+
 .mytext{
   text-align: justify;
+}
+
+#draftStatus{
+  color: var(--blue);
+  background-color: var(--orange);
 }
 
 i {

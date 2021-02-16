@@ -89,14 +89,41 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
     .then((user)=>{
       res.render('user/update-profile', {user})
     })
-    .catch(()=>{
-      console.log('Something is not working editing the user')
+    .catch((err)=>{
+      next(err)
+    })
+})
+
+router.get('/review/:id/edit/', (req,res,next)=>{
+
+  let id = req.params.id
+
+  CommentModel.findById(id)
+    .then((comment)=>{
+      res.render('user/update-review', {comment})
+    })
+    .catch((err)=>{
+       next(err)
     })
 })
 
 router.get('/logout', checkLoggedInUser, (req,res,next)=>{
   req.session.destroy()
   res.redirect('/')
+})
+
+router.get('/reviews/:id/delete/', (req, res, next)=>{
+
+  let id = req.params.id
+
+  CommentModel.findByIdAndDelete(id)
+    .then(()=>{
+      console.log('deleting')
+      res.redirect('/profile')
+    })
+    .catch(()=>{
+      console.log('Not possible to delete')
+    })
 })
 
 //POST Methods
@@ -204,30 +231,41 @@ router.post('/profile/edit', (req, res, next)=>{
   } else {
     UserModel.findOneAndUpdate({email : email}, editedUser)
     .then(() => res.redirect('/profile'))
-    .catch(() => console.log('Cannot edit'))
+    .catch((err) => next(err))
   }
 })
 
-router.post('/reviews/:id/delete/', (req, res, next)=>{
+router.post('/review/:id/edit', (req,res, next)=>{
 
   let id = req.params.id
 
-  CommentModel.findByIdAndDelete(id)
+  const {city, address, zipcode, title, review, score, tags} = req.body;
+
+  let editedComment = {
+    city: city,
+    address: address,
+    zipcode: zipcode,
+    title: title,
+    review: review,
+    score: score,
+    tags: tags
+  }
+
+  CommentModel.findByIdAndUpdate(id, editedComment)
     .then(()=>{
-      console.log('deleting')
       res.redirect('/profile')
     })
-    .catch(()=>{
-      console.log('Not possible to delete')
+    .catch((err)=>{
+      next(err)
     })
-})
+});
 
 router.post('/writereview', (req, res, next) => {
   const {city, address, zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
    if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
-     res.render('signup.hbs', {msg: 'Please enter all fields'})
+     res.render('user/writereview', {msg: 'Please enter all fields'})
      return;
      }
 
@@ -253,7 +291,7 @@ router.post('/publishreview', (req, res, next) => {
   
    //check for all required filled in values
    if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
-    res.render('signup.hbs', {msg: 'Please enter all fields'})
+    res.render('user/writereview', {msg: 'Please enter all fields'})
     return;
     }
 
@@ -272,6 +310,32 @@ router.post('/publishreview', (req, res, next) => {
        .then(() => res.redirect('/profile'))
        .catch((err) => next(err))
    })
+})
+
+router.post('/review/:id/edit/publish', (req, res, next)=>{
+
+  let id = req.params.id
+
+  const {city, address, zipcode, title, review, score, tags} = req.body;
+
+  let editedComment = {
+    city: city,
+    address: address,
+    zipcode: zipcode,
+    title: title,
+    review: review,
+    score: score,
+    tags: tags,
+    published: true,
+  }
+
+  CommentModel.findByIdAndUpdate(id, editedComment)
+    .then(()=>{
+      res.redirect('/profile')
+    })
+    .catch((err)=>{
+      next(err)
+    })
 })
 
 router.post('/reviews', (req, res, next) => {

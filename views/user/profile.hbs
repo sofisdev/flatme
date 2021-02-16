@@ -9,11 +9,26 @@
   
     <div class="myinfo container">
       <div class="info">
-        <h6>Name : {{user.0.name}}</h6>
-        <h6>Last Name : {{user.0.lastname}}</h6>
-        <h6>Email : {{user.0.email}}</h6>
-        <h6>Hobbies : {{user.0.hobbies}}</h6>
-        <h6>Country : {{user.0.country}}</h6>
+        <span>
+        <h5>Name: </h5> 
+        <h6>{{user.0.name}}</h6>
+        </span>
+        <span>
+        <h5>Last Name: </h5>
+        <h6>{{user.0.lastname}}</h6>
+        </span>
+        <span>
+        <h5>Email: </h5>
+        <h6>{{user.0.email}}</h6>
+        </span>
+        <span>
+        <h5>Hobbies: </h5>
+        <h6>{{user.0.hobbies}}</h6>
+        </span>
+        <span>
+        <h5>Country: </h5>
+        <h6>{{user.0.country}}</h6>
+        </span>
       </div>
   
       <div class="controlbtn">
@@ -25,22 +40,37 @@
 
 
     {{#if comment}}
-    <div class="container section">
+    <div class="container section profileComment">
       <h2>Your reviews</h2>
       <hr>
       
       {{#each comment}}
-        <h4>{{this.title}}</h4>
-        <p>{{this.review}}</p>
         {{#unless this.published}}
-        <p id="draftStatus">DRAFT</p>
-        <form action="/reviews/{{this._id}}/editreview" method="POST">
-          <button type="submit" class="mybtn btn text-white">Edit</button>
-        </form>
+          <div class"container draftcomment">
+            <h4 id="draftStatus">DRAFT</h4>
+            <h4 class="text-grey">{{this.title}}</h4>
+            <p>score: {{this.score}}/5</p>
+            <p>{{this.address}}</p>
+            <p>{{this.review}}</p>
+          </div>
         {{/unless}}
-        <form action="/reviews/{{this._id}}/delete" method="POST">
+
+        {{#if this.published}}
+          <h4>{{this.title}}</h4>
+          <p>score: {{this.score}}/5</p>
+          <p>{{this.address}}</p>
+          <p>{{this.review}}</p>
+        {{/if}}
+        
+
+        {{#unless this.published}}
+          <a href="/review/{{this._id}}/edit">
+            <button type="submit" class="mybtn btn text-white">Edit</button>
+          </a>
+        {{/unless}}
+        <a href="/reviews/{{this._id}}/delete">
           <button type="submit" class="mybtn btn text-white">Delete</button>
-        </form>
+        </a>
         
       {{/each}}
 
