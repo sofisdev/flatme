@@ -11,6 +11,8 @@ const {OAuth2Client} = require('google-auth-library');
 const CLIENT_ID = '136668872566-suma2arehmhvb8ehtt65v8queg50jggk.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
 
+const uploader = require('../utils/cloudinary.config.js');
+
 const checkLoggedInUser = (req, res, next) =>{
   if(req.session.loggedInUser){
     next()
@@ -210,7 +212,7 @@ router.post('/login', (req, res, next) =>{
     })
 })
 
-router.post('/profile/edit', (req, res, next)=>{
+router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
           email, hobbies, country} = req.body
 
@@ -218,7 +220,8 @@ router.post('/profile/edit', (req, res, next)=>{
     name: name,
     lastname : lastname,
     hobbies: hobbies,
-    country: country
+    country: country,
+    picture: req.file.path
   }
 
   if( !editedUser.name || !editedUser.lastname || !editedUser.country){
