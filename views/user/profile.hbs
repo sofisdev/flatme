@@ -1,12 +1,8 @@
 {{> userpartial}}
 
 <div class="container">
-
   <h1 class="m-4 title">Hello {{user.0.name}}, welcome to your profile</h1>
-
   <div class="section">
-
-  
     <div class="myinfo container">
       <div class="info">
         <span>
@@ -39,43 +35,62 @@
   </div>
 
 
-    {{#if comment}}
-    <div class="container section profileComment">
-      <h2>Your reviews</h2>
-      <hr>
-      
-      {{#each comment}}
-        {{#unless this.published}}
-          <div class"container draftcomment">
-            <h4 id="draftStatus">DRAFT</h4>
-            <h4 class="text-grey">{{this.title}}</h4>
-            <p>score: {{this.score}}/5</p>
-            <p>{{this.address}}</p>
-            <p>{{this.review}}</p>
-          </div>
-        {{/unless}}
-
-        {{#if this.published}}
-          <h4>{{this.title}}</h4>
-          <p>score: {{this.score}}/5</p>
-          <p>{{this.address}}</p>
-          <p>{{this.review}}</p>
-        {{/if}}
-        
-
-        {{#unless this.published}}
-          <a href="/reviews/{{this._id}}/editreview">
-            <button type="submit" class="mybtn btn text-white">Edit</button>
-          </a>
-        {{/unless}}
-        <a href="/reviews/{{this._id}}/delete">
-          <button type="submit" class="mybtn btn text-white">Delete</button>
-        </a>
-        
-      {{/each}}
-
+  {{#if comment}}
+  <div class="container section profileComment">
+    <h2>Your reviews</h2>
+    <hr>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Unpublished Reviews (drafts)
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          {{#each comment}}
+            {{#unless this.published}}
+              <div class"container draftcomment">
+                <h4 id="draftStatus">DRAFT</h4>
+                <h4 class="text-grey">{{this.title}}</h4>
+                <p>score: {{this.score}}/5</p>
+                <p>{{this.address}}</p>
+                <p>{{this.review}}</p>
+              </div>
+              <a href="/reviews/{{this._id}}/editreview">
+                <button type="submit" class="mybtn btn text-white">Edit</button>
+              </a>
+              <a href="/reviews/{{this._id}}/delete">
+                <button type="submit" class="mybtn btn text-white">Delete</button>
+              </a>
+            {{/unless}}
+          {{/each}}
+        </div>
+      </div>
     </div>
-    {{/if}}
-  
-
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Published Reviews
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          {{#each comment}}
+            {{#if this.published}}
+              <h4>{{this.title}}</h4>
+              <p>score: {{this.score}}/5</p>
+              <p>{{this.address}}</p>
+              <p>{{this.review}}</p>
+            
+              <a href="/reviews/{{this._id}}/delete">
+                <button type="submit" class="mybtn btn text-white">Delete</button>
+              </a>
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
 </div>
