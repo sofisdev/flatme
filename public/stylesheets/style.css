@@ -181,7 +181,7 @@ nav{
   text-align: justify;
 }
 
-#draftStatus{
+.draftStatus{
   color: var(--blue);
   background-color: var(--lightOrange);
   padding: 2px;
@@ -236,12 +236,13 @@ i:hover {
 
 .draftcomment {
   margin-bottom: 10px;
+  padding-bottom: 15px;
+  padding-top: 5px;
+  border-bottom: 2px solid var(--orange);
 }
 .contact > a {
   margin: 10px;
 }
-
-
 
 @media (max-width: 600px) and (orientation: portrait){
   .team{

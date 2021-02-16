@@ -61,8 +61,13 @@ router.get('/profile',checkLoggedInUser, (req, res, next) =>{
       CommentModel.find({userId: req.session.loggedInUser._id})
             .populate('userId')
             .then((comment) => {
-              res.render('user/profile', {user, comment})
-              // res.json(comment)
+              let isDrafts = false;
+              comment.forEach(elem => {
+                if (!elem.published) {
+                  isDrafts = true;
+                }
+              })
+              res.render('user/profile', {user, comment, isDrafts})
             })
     })
     .catch(()=>{
@@ -185,7 +190,7 @@ router.post('/login', (req, res, next) =>{
   if (!email.length || !password.length ) {
     res.render('login', {msg: 'Please enter all fields'})
     return;
-  } //no se porque me da error ahora, dice que no se puede leer legth de undefined
+  }
 
   UserModel.findOne({email : email})
     .then((result)=>{
