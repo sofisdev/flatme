@@ -25,22 +25,28 @@
 
 
     {{#if comment}}
-    <div class="container section">
+    <div class="container section profileComment">
       <h2>Your reviews</h2>
       <hr>
       
       {{#each comment}}
-        <h4>{{this.title}}</h4>
-        <p>{{this.review}}</p>
         {{#unless this.published}}
-        <p id="draftStatus">DRAFT</p>
-        <form action="/reviews/{{this._id}}/editreview" method="POST">
-          <button type="submit" class="mybtn btn text-white">Edit</button>
-        </form>
+          <p id="draftStatus">DRAFT</p>
         {{/unless}}
-        <form action="/reviews/{{this._id}}/delete" method="POST">
+        <h4>{{this.title}}</h4>
+        <p>score: {{this.score}}/5</p>
+        <p>{{this.address}}</p>
+        <p>{{this.review}}</p>
+        
+
+        {{#unless this.published}}
+        <a href="/reviews/{{this._id}}/editreview">
+          <button type="submit" class="mybtn btn text-white">Edit</button>
+        </a>
+        {{/unless}}
+        <a href="/reviews/{{this._id}}/delete">
           <button type="submit" class="mybtn btn text-white">Delete</button>
-        </form>
+        </a>
         
       {{/each}}
 

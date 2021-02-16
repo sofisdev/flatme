@@ -99,6 +99,20 @@ router.get('/logout', checkLoggedInUser, (req,res,next)=>{
   res.redirect('/')
 })
 
+router.get('/reviews/:id/delete/', (req, res, next)=>{
+
+  let id = req.params.id
+
+  CommentModel.findByIdAndDelete(id)
+    .then(()=>{
+      console.log('deleting')
+      res.redirect('/profile')
+    })
+    .catch(()=>{
+      console.log('Not possible to delete')
+    })
+})
+
 //POST Methods
 router.post('/signup', (req, res, next) => {
   const {name, lastname, 
@@ -208,19 +222,7 @@ router.post('/profile/edit', (req, res, next)=>{
   }
 })
 
-router.post('/reviews/:id/delete/', (req, res, next)=>{
 
-  let id = req.params.id
-
-  CommentModel.findByIdAndDelete(id)
-    .then(()=>{
-      console.log('deleting')
-      res.redirect('/profile')
-    })
-    .catch(()=>{
-      console.log('Not possible to delete')
-    })
-})
 
 router.post('/writereview', (req, res, next) => {
   const {city, address, zipcode, title, review, score, tags} = req.body;
