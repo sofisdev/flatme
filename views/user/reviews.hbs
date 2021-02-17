@@ -27,7 +27,7 @@
             <option value="Students">Students</option>
             <option value="International">International</option>
             <option value="Party-friendly">Party-friendly</option>
-            <option value="Groceries & restaurants">Groceries & restaurants</option>
+            <option value="Commercial area">Commercial area</option>
             <option value="Green area">Green area</option>
             <option value="Sports options">Sports options</option>
         </select>
@@ -44,10 +44,11 @@
     <div id="map"></div>
 
   
+  <div class="viewAll">
 
     {{#each review}}
       {{#if this.published}}
-      <div class="section container viewAll">
+      <div class="single-review section container">
         <div class="userInfo">
           <img class="col userpicture usersmall" src="{{this.userId.picture}}" alt="user picture"> 
           <span>
@@ -56,26 +57,23 @@
           </span>
         </div>
           
-        <h2 class="mb-3">{{this.title}}</h2>
-        <h3 class="mb-3">{{this.score}} / 5</h3>
-        <div class="col">Tags: {{this.tags}}</div>
+        <h3 class="mb-3">{{this.title}}</h3>
 
-        <div class="container directions">
-          <div class="row row-cols-3">
-            <div class="col">City: {{this.city}}</div>
-            <div class="col">Address: {{this.address}}</div>           
-            <div class="col">Status: {{this.status}}</div>
-          </div>
+        <div class="inner-card">
+          <h5 ml-4>Rating: {{this.score}} / 5</h5>
+          <h5>#{{this.tags}}</h5>
         </div>
 
+        <div class="secondary-card">
+          <p>City: {{this.city}}</p>
+          <p>Address: {{this.address}}</p>
+        </div>
+   
         <hr>
 
-        <div class="container mt-4">
+        <div class="mt-4">
           <p>Review:</p>
-          <p class="review"> 
-            <br>
-            <br>
-            "{{this.review}}"</p>
+          <p class="review">"{{this.review}}"</p>
         </div>
 
         {{#if this.picture}}
@@ -83,9 +81,11 @@
         <img src="{{this.picture}}" alt="picture">
 
       {{/if}}
-    </div>
+      </div>
     {{/if}} 
     {{/each}}
+
+  </div>
 
 
   <div class="section">

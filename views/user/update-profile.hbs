@@ -9,23 +9,23 @@
 
       <form method="POST" action="/profile/edit" class="row g-3" enctype="multipart/form-data" >
       <div class="col-md-6">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label">Name *</label>
         <input value="{{user.0.name}}" type="text" name="name" id="name" placeholder="Name" class="form-control">
       </div>
 
       <div class="col-md-6">
-        <label for="lastname" class="form-label">Last Name</label>
+        <label for="lastname" class="form-label">Last Name *</label>
         <input value="{{user.0.lastname}}" type="text" name="lastname" id="lastname" placeholder="Last Name" class="form-control">
       </div>
 
       <div class="col-md-6">
 
-        <label for="hobbies" class="form-label">Hobbies / interests</label>
+        <label for="hobbies" class="form-label">Hobbies / interests (optional)</label>
         <input value="{{user.0.hobbies}}" type="text" name="hobbies" id="hobbies" placeholder="Shopping, reading, ..." class="form-control">
       </div>
 
       <div class="col-md-6">
-        <label for="country" class="form-label">Country</label> 
+        <label for="country" class="form-label">Country *</label> 
         <select id="country" name="country" class="form-select" aria-label=".form-select-sm example">
           <option value="{{user.0.country}}">{{user.0.country}}</option>
             <option value="Afghanistan">Afghanistan</option>
@@ -271,7 +271,7 @@
       </div>
 
       <div class="col-12">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label">Email address *</label>
         <input value="{{user.0.email}}" type="email" name="email" id="email" placeholder="Email" class="form-control">
       </div>
 
@@ -293,6 +293,6 @@
 
 {{#if msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> {{msg}}
+  <strong>Holy guacamole! 🥑</strong> {{msg}}
 </div>
 {{/if}}
