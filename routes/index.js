@@ -3,13 +3,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.js')
 const CommentModel = require('../models/Comment.js');
 const geocoder = require('../utils/geocoder');
-
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
-
-//google auth
-const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '136668872566-suma2arehmhvb8ehtt65v8queg50jggk.apps.googleusercontent.com'
-const client = new OAuth2Client(CLIENT_ID);
 
 //GET Methods
 router.get("/", (req, res, next) => {

@@ -3,14 +3,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.js')
 const CommentModel = require('../models/Comment.js');
 const geocoder = require('../utils/geocoder');
-
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
-
-//google auth
-const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '136668872566-suma2arehmhvb8ehtt65v8queg50jggk.apps.googleusercontent.com'
-const client = new OAuth2Client(CLIENT_ID);
-
 const uploader = require('../utils/cloudinary.config.js');
 
 const checkLoggedInUser = (req, res, next) =>{
@@ -150,7 +143,7 @@ router.post('/review/:id/edit', (req,res, next)=>{
     title: title,
     review: review,
     score: score,
-    tags: tags
+    tags: tags,
   }
 
   CommentModel.findByIdAndUpdate(id, editedComment)
@@ -160,6 +153,7 @@ router.post('/review/:id/edit', (req,res, next)=>{
     .catch((err)=>{
       next(err)
     })
+  
 });
 
 router.post('/writereview', (req, res, next) => {
@@ -175,24 +169,14 @@ router.post('/writereview', (req, res, next) => {
      return;
   }
   
-  //transform address and city into coordinates and create element in the database
-  geocoder.geocode({address: address, city: city, zipcode: zipcode})
-    .then((data) => {
-      //update coordinates
-      let idGeo = {
-        type: 'Point',
-        coordinates: [data[0].longitude, data[0].latitude],
-        formattedAddress: data[0].formattedAddress
-      }
+  // create a review on the database
+  CommentModel.create({address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
+    .then(() => {
 
-      // create a review on the database
-      CommentModel.create({idGeo, address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
-        .then(() => {
-
-          res.redirect('/profile')
-        })
-        .catch((err) => next(err))
+      res.redirect('/profile')
     })
+    .catch((err) => next(err))
+    
 })
 
 router.post('/publishreview', (req, res, next) => {
@@ -205,7 +189,7 @@ router.post('/publishreview', (req, res, next) => {
     }
 
   //transform address and city into coordinates and create element in the database
-  geocoder.geocode({address: address, city: city, zipcode: zipcode})
+  geocoder.geocode(`${zipcode}, ${city}`)
    .then((data) => {
      //update coordinates
      let idGeo = {
@@ -227,24 +211,35 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 
   const {city, address, zipcode, title, review, score, tags} = req.body;
 
-  let editedComment = {
-    city: city,
-    address: address,
-    zipcode: zipcode,
-    title: title,
-    review: review,
-    score: score,
-    tags: tags,
-    published: true,
-  }
+  geocoder.geocode(`${zipcode}, ${city}`)
+    .then((data) => {
+      //update coordinates
+      let idGeo = {
+        type: 'Point',
+        coordinates: [data[0].longitude, data[0].latitude],
+        formattedAddress: data[0].formattedAddress
+      }
 
-  CommentModel.findByIdAndUpdate(id, editedComment)
-    .then(()=>{
-      res.redirect('/profile')
-    })
-    .catch((err)=>{
-      next(err)
-    })
+      let editedComment = {
+        city: city,
+        address: address,
+        zipcode: zipcode,
+        title: title,
+        review: review,
+        score: score,
+        tags: tags,
+        published: true,
+        idGeo: idGeo
+      }
+
+      CommentModel.findByIdAndUpdate(id, editedComment)
+        .then(()=>{
+          res.redirect('/profile')
+        })
+        .catch((err)=>{
+          next(err)
+        })
+      })
 })
 
 router.post('/reviews', (req, res, next) => {
