@@ -94,6 +94,9 @@ router.post('/login', (req, res, next) =>{
             res.render('login', {msg: 'Good lord! Seems like your forgot your password, too many beers perhaps 🍺 ?'})
           }
         }
+        else {
+          res.render('login', {msg: 'Good lord! Seems like we do not know this email, try again with a different email or sign up for free!'})
+        }
     })
     .catch((err)=>{
       next(err)
