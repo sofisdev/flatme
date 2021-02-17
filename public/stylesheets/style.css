@@ -252,6 +252,20 @@ i:hover {
   border-radius: 50%;
 }
 
+.mytoggle{
+  border: none;
+  margin-right: 5px;
+}
+
+
+.mytoggle:focus {
+  z-index: 3;
+  border-color: var(--lightOrange);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--lightOrange);
+}
+
+
 @media (max-width: 850px) and (orientation: portrait){
   .team{
     flex-direction: column;
@@ -279,17 +293,47 @@ i:hover {
     margin-bottom: 20px;
   }
 
+  .section{
+    margin: 10px 15px 10px 15px;
+    font-size: 1.2em;
+  }
+
+  .mytext{
+    text-align: center;
+  }
+
+  .team-card > p {
+    text-align: center;
+  }
+
 }
 
-@media (max-width: 991px) and (orientation:portrait){
+@media (max-width: 991px){
 
   .mycollapse{
     flex-direction: column;
-    align-items: flex-start;
+    align-items: initial;
+  }
+
+  .my-link{
+    font-size: 1.3rem;
   }
 
   .my-link:hover{
+    text-decoration: none;
     color: #210A72;
   }
 
+  .nav-item {
+    margin: 20px 0 0 20px;
+  }
+
+  .user-icon-link{
+    margin: 20px 0 0 20px ;
+  }
+
+  .team {
+    flex-direction: column;
+    align-items: center;
+  }
 }
