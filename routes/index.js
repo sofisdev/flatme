@@ -41,7 +41,7 @@ router.get('/signup', (req, res, next) => {
 
 router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   
-  CommentModel.find()
+  CommentModel.find().populate('userId')
     .then((result) => {
       res.render('user/reviews', {review: result})
     })
@@ -261,7 +261,10 @@ router.post('/writereview', (req, res, next) => {
 
       // create a review on the database
       CommentModel.create({idGeo, address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
-        .then(() => res.redirect('/profile'))
+        .then(() => {
+
+          res.redirect('/profile')
+        })
         .catch((err) => next(err))
     })
 })

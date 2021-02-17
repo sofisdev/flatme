@@ -36,7 +36,6 @@
   </div>
 
 
-  {{#if comment}}
   <div class="container section profileComment">
     <h2>Your reviews</h2>
     <hr>
@@ -81,6 +80,9 @@
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
         <div class="accordion-body">
+          {{#unless comment}}
+              <p class="title">You have no published reviews, how about writing a review or publishing a draft?</p>
+            {{/unless}}
           {{#each comment}}
             {{#if this.published}}
               <div class="container draftcomment">
@@ -99,5 +101,4 @@
       </div>
     </div>
   </div>
-  {{/if}}
 </div>

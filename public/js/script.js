@@ -13,8 +13,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 
 
 let locIcon = L.icon({
   iconUrl: '../images/location.png',
-  iconSize: [19, 39],
-  iconAnchor: [11, 39],
+  iconSize: [19, 33],
+  iconAnchor: [9, 33],
 });
 
 //get coordinates from client-side
