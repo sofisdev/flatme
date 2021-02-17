@@ -166,11 +166,15 @@ router.post('/writereview', (req, res, next) => {
   const {city, address, zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
-   if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
+  if (zipcode.length != 5 && zipcode.length) {
+    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers'})
+     return;
+  }
+  else if (!city.length || !zipcode.length || !title.length || !address.length || !review.length || !score.length ) {
      res.render('user/writereview', {msg: 'Please enter all fields'})
      return;
-     }
-
+  }
+  
   //transform address and city into coordinates and create element in the database
   geocoder.geocode({address: address, city: city, zipcode: zipcode})
     .then((data) => {
