@@ -40,7 +40,7 @@ footer {
 
 .my-link{
   color: black;
-  margin: 30px;
+  margin: 30px 30px 30px 0;
 }
 
 .my-link:hover{
@@ -49,6 +49,16 @@ footer {
   text-decoration-thickness: 5px;
   color: #210A72;
   transition: 0.90s;
+}
+
+.mycollapse {
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-icon-link{
+  margin-right: 20px;
 }
 
 .myhero {
@@ -242,7 +252,7 @@ i:hover {
   border-radius: 50%;
 }
 
-@media (max-width: 600px) and (orientation: portrait){
+@media (max-width: 850px) and (orientation: portrait){
   .team{
     flex-direction: column;
   }
@@ -267,7 +277,19 @@ i:hover {
 
   .info{
     margin-bottom: 20px;
-    text-align: justify;
+  }
+
+}
+
+@media (max-width: 991px) and (orientation:portrait){
+
+  .mycollapse{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .my-link:hover{
+    color: #210A72;
   }
 
 }
