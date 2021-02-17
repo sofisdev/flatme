@@ -31,11 +31,6 @@
   text-decoration-thickness: 5px;
 }
 
-/* img{
-  width: 150px;
-  height: 60px;
-} */
-
 .index-logo{
   margin-bottom: 16px;
   padding-top: 5px;
@@ -45,7 +40,7 @@
 #mainLogo {
  width: 110px;
  height: auto;
- margin-bottom: 10px;
+ margin: auto auto 10px 10px;
 }
 
 footer {
@@ -192,6 +187,14 @@ nav{
   margin-left: 15px;
 }
 
+.controlbtn{
+  display: flex;
+}
+
+.icon-btn{
+  margin-right: 10px;
+}
+
 .mytext{
   text-align: justify;
 }
@@ -310,12 +313,16 @@ i:hover {
 .viewAll{
   display: flex;
   flex-wrap: wrap;
+  justify-content: baseline;
   justify-content: space-between;
   align-items: center;
 }
 
 .single-review {
   max-width: 640px;
+  max-height: 500px;
+  min-height: 500px;
+  overflow: auto;
 }
 
 .inner-card{
@@ -335,20 +342,12 @@ i:hover {
   }
 }
 
-
-
-@media (max-width: 850px) and (orientation: portrait){
+@media (max-width: 850px){
   .team{
     flex-direction: column;
   }
 
   .why-section{
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .userSection{
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -362,6 +361,7 @@ i:hover {
 
   .info{
     margin-bottom: 20px;
+    overflow: scroll;
   }
 
   .section{
@@ -399,6 +399,12 @@ i:hover {
     margin: 20px 0 0 20px;
   }
 
+  .userSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .user-icon-link{
     margin: 20px 0 0 20px ;
   }
@@ -406,5 +412,13 @@ i:hover {
   .team {
     flex-direction: column;
     align-items: center;
+  }
+
+  .single-review{
+    max-height: fit-content;
+  }
+
+  .controlbtn{
+    flex-direction: row;
   }
 }
