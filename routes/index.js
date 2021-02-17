@@ -41,7 +41,7 @@ router.get('/signup', (req, res, next) => {
 
 router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   
-  CommentModel.find()
+  CommentModel.find().populate('userId')
     .then((result) => {
       res.render('user/reviews', {review: result})
     })
@@ -133,7 +133,7 @@ router.post('/signup', (req, res, next) => {
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
      !password.length || !country.length || !name.length) {
-      res.render('signup.hbs', {msg: 'Please enter all fields'})
+      res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!'})
       return;
   }
 
@@ -152,7 +152,7 @@ router.post('/signup', (req, res, next) => {
   UserModel.findOne({email: email})
     .then((user) => {
       if(user) {
-        res.render('signup.hbs', {msg: 'This email is not available, please try a different one'})
+        res.render('signup.hbs', {msg: 'This email is not available, are you sure you don not have an account with us already?'})
         return;
       }
     })
@@ -169,7 +169,7 @@ router.post('/login', (req, res, next) =>{
   const {email, password} = req.body
 
   if (!email.length || !password.length ) {
-    res.render('login', {msg: 'Please enter all fields'})
+    res.render('login', {msg: 'Holy guacamole 🥑 ! Seems like you forgot to fill out all the fields!'})
     return;
   }
 
@@ -182,7 +182,7 @@ router.post('/login', (req, res, next) =>{
             res.redirect('/profile')
           }
           else {
-            res.render('login', {msg: 'Seems like your forgot your password....'})
+            res.render('login', {msg: 'Good lord! Seems like your forgot your password, too many beers perhaps 🍺 ?'})
           }
         }
     })
@@ -261,7 +261,10 @@ router.post('/writereview', (req, res, next) => {
 
       // create a review on the database
       CommentModel.create({idGeo, address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
-        .then(() => res.redirect('/profile'))
+        .then(() => {
+
+          res.redirect('/profile')
+        })
         .catch((err) => next(err))
     })
 })
@@ -334,7 +337,7 @@ router.post('/reviews', (req, res, next) => {
     filter = {tags:tags}
   }
 
-  CommentModel.find(filter)
+  CommentModel.find(filter).populate('userId')
     .then((result) => {
       res.render('user/reviews', {review: result})
     })

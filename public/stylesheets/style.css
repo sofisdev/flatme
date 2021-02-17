@@ -36,9 +36,16 @@
   height: 60px;
 } */
 
+.index-logo{
+  margin-bottom: 16px;
+  padding-top: 5px;
+  margin-right: 10px;
+}
+
 #mainLogo {
  width: 110px;
  height: auto;
+ margin-bottom: 10px;
 }
 
 footer {
@@ -260,6 +267,32 @@ i:hover {
   border-radius: 50%;
 }
 
+.userInfo{
+  display: inline-flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.userInfo span {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 15px;
+}
+.userInfo span > h3{
+  margin-right: 6px;
+}
+
+.usersmall {
+  width: 100px;
+  height:100px;
+}
+
+.review{
+  font-style: oblique;
+}
+
+
 .mytoggle{
   border: none;
   margin-right: 5px;
@@ -273,6 +306,45 @@ i:hover {
   box-shadow: 0 0 0 0.25rem var(--lightOrange);
 }
 
+.viewAll{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.single-review {
+  max-width: 640px;
+}
+
+.inner-card{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.secondary-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1400px){
+  .single-review{
+    max-width: 1400px;
+  }
+}
+
+@media (max-width: 600px){
+  .inner-card{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .secondary-card{
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 @media (max-width: 850px) and (orientation: portrait){
   .team{
@@ -302,7 +374,7 @@ i:hover {
   }
 
   .section{
-    margin: 10px 15px 10px 15px;
+    margin: 10px;
     font-size: 1.2em;
   }
 
