@@ -136,10 +136,10 @@ router.post('/signup', (req, res, next) => {
       res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!'})
       return;
   }
-  else if(!(password == password2)) {
-     res.render('signup.hbs', {msg: 'Passwords do not match'})
-     return;
-  }
+  // else if(!(password == password2)) {
+  //    res.render('signup.hbs', {msg: 'Passwords do not match'})
+  //    return;
+  // }
 
   //check for password
   let regexPass = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/;
