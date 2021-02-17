@@ -1,8 +1,12 @@
 <div class="container">
   <h1 class="m-4 title">Hello {{user.0.name}}, welcome to your profile</h1>
+
   <div class="section userSection">
+
     <img class = "userpicture" src="{{user.0.picture}}" alt="profile picture">
-    <div class="myinfo container">
+
+    <div class="myinfo">
+
       <div class="info">
         <span>
         <h5>Name: </h5> 
@@ -30,11 +34,13 @@
         <a href="/profile/edit"><i class="fas fa-edit fa-lg"></i></a>
         <a href="/logout" class="m-4"><i class="myicon fas fa-sign-out-alt fa-lg"></i></a>
       </div>
+
     </div>
+
   </div>
 
 
-  <div class="container section profileComment">
+  <div class="section profileComment">
     <h2>Your reviews</h2>
     <hr>
     <div class="accordion" id="accordionExample">
