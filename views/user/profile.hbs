@@ -50,7 +50,7 @@
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
           {{#unless isDrafts}}
-              <h4 class="draftStatus">No drafts</h4>
+              <p class="title">Well done! All your reviews are published.</p>
             {{/unless}}
           {{#each comment}}
             {{#unless this.published}}
