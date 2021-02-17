@@ -1,33 +1,35 @@
 <div class="container">
   <div class="section">
   <form method="POST" action="/writereview" class="row g-3">
+  <p>Please fill out all the mandatory fields (*).</p>
+  <hr>
     <div class="col-md-6">
-        <label for="city" class="form-label">City</label>
+        <label for="city" class="form-label">City <span class="form-text">*</span></label>
         <input type="text" name="city" id="city" class="form-control">
     </div>
 
     <div class="col-md-6">
-      <label for="address" class="form-label">Address</label>
+      <label for="address" class="form-label">Address <span class="form-text">*</span></label>
       <input type="text" name="address" id="address" class="form-control">
     </div>
 
     <div class="col-md-6">
-      <label for="zipcode" class="form-label">Zipcode</label>
+      <label for="zipcode" class="form-label">Zipcode <span class="form-text">*</span> </label>
       <input type="text" name="zipcode" id="zipcode" class="form-control">
     </div>
 
     <div class="col-md-6">
-      <label for="title" class="form-label">Title</label>
+      <label for="title" class="form-label">Title <span class="form-text">*</span> </label>
       <input type="text" name="title" id="title" class="form-control">
     </div>
 
       <div class="col-12">
-        <label for="review" class="form-label">Your review</label>
+        <label for="review" class="form-label">Your review <span class="form-text">*</span> </label>
         <input type="text" name="review" id="review" class="form-control">
       </div>
 
       <div class="col-md-6">
-        <label for="score" class="form-label">Score out of 5</label> 
+        <label for="score" class="form-label">Score out of 5 <span class="form-text">*</span></label> 
         <select id="score" name="score" class="form-select" aria-label=".form-select-sm example">
           <option selected></option>
             <option value="1">⭐</option>
@@ -39,7 +41,7 @@
       </div>
 
       <div class="col-md-6">
-        <label for="tags" class="form-label">Select a label</label> 
+        <label for="tags" class="form-label">Select a label <span class="form-text">(Optional field)</span> </label> 
         <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example">
           <option selected></option>
             <option value="Family">Family</option>
@@ -47,7 +49,7 @@
             <option value="Students">Students</option>
             <option value="International">International</option>
             <option value="Party-friendly">Party-friendly</option>
-            <option value="Groceries & restaurants">Groceries & restaurants</option>
+            <option value="Commercial area">Commercial area</option>
             <option value="Green area">Green area</option>
             <option value="Sports options">Sports options</option>
         </select>
@@ -65,6 +67,6 @@
 
 {{#if msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> {{msg}}
+  <strong>Holy guacamole! 🥑</strong> {{msg}}
 </div>
 {{/if}}
