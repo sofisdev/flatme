@@ -9,7 +9,7 @@
     </div>
 
 
-      <form method="POST" action="/profile/edit" class="row g-3">
+      <form method="POST" action="/profile/edit" class="row g-3" enctype="multipart/form-data" >
       <div class="col-md-6">
         <label for="name" class="form-label">Name</label>
         <input value="{{user.0.name}}" type="text" name="name" id="name" placeholder="Name" class="form-control">
@@ -276,6 +276,11 @@
         <label for="email" class="form-label">Email address</label>
         <input value="{{user.0.email}}" type="email" name="email" id="email" placeholder="Email" class="form-control">
       </div>
+
+      {{!-- <form method="POST" action="/upload" enctype="multipart/form-data"> --}}
+        <input type="file" name="picture" accept="image/png, image/jpg">
+        {{!-- <button class="mybtn text-white" type="submit">Upload picture</button> 
+      </form> --}}
       
       <div class="col-12 text-center">
         <button type="submit" class="mybtn btn btn-primary">Save Changes</button>

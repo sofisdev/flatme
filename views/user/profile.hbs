@@ -2,7 +2,8 @@
 
 <div class="container">
   <h1 class="m-4 title">Hello {{user.0.name}}, welcome to your profile</h1>
-  <div class="section">
+  <div class="section userSection">
+    <img class = "userpicture" src="{{user.0.picture}}" alt="profile picture">
     <div class="myinfo container">
       <div class="info">
         <span>
@@ -42,22 +43,25 @@
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           Unpublished Reviews (drafts)
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
+          {{#unless isDrafts}}
+              <h4 class="draftStatus">No drafts</h4>
+            {{/unless}}
           {{#each comment}}
             {{#unless this.published}}
-              <div class"container draftcomment">
-                <h4 id="draftStatus">DRAFT</h4>
+              <div class="container draftcomment">
+                <h4 class="draftStatus">DRAFT</h4>
                 <h4 class="text-grey">{{this.title}}</h4>
                 <p>score: {{this.score}}/5</p>
                 <p>{{this.address}}</p>
                 <p>{{this.review}}</p>
               
-              <a href="/reviews/{{this._id}}/edit">
+              <a href="/review/{{this._id}}/edit">
                 <button type="submit" class="mybtn btn text-white">Edit</button>
               </a>
               <a href="/reviews/{{this._id}}/delete">
@@ -79,14 +83,16 @@
         <div class="accordion-body">
           {{#each comment}}
             {{#if this.published}}
-              <h4>{{this.title}}</h4>
-              <p>score: {{this.score}}/5</p>
-              <p>{{this.address}}</p>
-              <p>{{this.review}}</p>
-            
-              <a href="/reviews/{{this._id}}/delete">
-                <button type="submit" class="mybtn btn text-white">Delete</button>
-              </a>
+              <div class="container draftcomment">
+                <h4>{{this.title}}</h4>
+                <p>score: {{this.score}}/5</p>
+                <p>{{this.address}}</p>
+                <p>{{this.review}}</p>
+              
+                <a href="/reviews/{{this._id}}/delete">
+                  <button type="submit" class="mybtn btn text-white">Delete</button>
+                </a>
+              </div>
             {{/if}}
           {{/each}}
         </div>

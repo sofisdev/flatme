@@ -122,6 +122,10 @@ nav{
   border-radius: 10px;
 }
 
+.userSection{
+  display: flex;
+}
+
 .team {
   display: flex;
   align-items: baseline;
@@ -166,7 +170,7 @@ nav{
   text-align: justify;
 }
 
-#draftStatus{
+.draftStatus{
   color: var(--blue);
   background-color: var(--lightOrange);
   padding: 2px;
@@ -221,12 +225,20 @@ i:hover {
 
 .draftcomment {
   margin-bottom: 10px;
+  padding-bottom: 15px;
+  padding-top: 5px;
+  border-bottom: 2px solid var(--orange);
 }
 .contact > a {
   margin: 10px;
 }
 
-
+.userpicture {
+  width: 200px;
+  height:200px;
+  border: 5px solid white;
+  border-radius: 100px;
+}
 
 @media (max-width: 600px) and (orientation: portrait){
   .team{

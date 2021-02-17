@@ -11,6 +11,8 @@ const {OAuth2Client} = require('google-auth-library');
 const CLIENT_ID = '136668872566-suma2arehmhvb8ehtt65v8queg50jggk.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
 
+const uploader = require('../utils/cloudinary.config.js');
+
 const checkLoggedInUser = (req, res, next) =>{
   if(req.session.loggedInUser){
     next()
@@ -19,16 +21,6 @@ const checkLoggedInUser = (req, res, next) =>{
     res.redirect('/signup')
   }
 }
-
-//Import leaflet
-global.window = { screen:{} }
-global.document = {
-  documentElement: { style: {} },
-  getElementsByTagName: () => { return {} },
-  createElement: () => { return {} }
-}
-global.navigator = { userAgent: 'nodejs', platform: 'nodejs'}
-const L = require('leaflet');
 
 //GET Methods
 router.get("/", (req, res, next) => {
@@ -71,8 +63,13 @@ router.get('/profile',checkLoggedInUser, (req, res, next) =>{
       CommentModel.find({userId: req.session.loggedInUser._id})
             .populate('userId')
             .then((comment) => {
-              res.render('user/profile', {user, comment})
-              // res.json(comment)
+              let isDrafts = false;
+              comment.forEach(elem => {
+                if (!elem.published) {
+                  isDrafts = true;
+                }
+              })
+              res.render('user/profile', {user, comment, isDrafts})
             })
     })
     .catch(()=>{
@@ -194,7 +191,7 @@ router.post('/login', (req, res, next) =>{
     })
 })
 
-router.post('/profile/edit', (req, res, next)=>{
+router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
           email, hobbies, country} = req.body
 
@@ -202,7 +199,8 @@ router.post('/profile/edit', (req, res, next)=>{
     name: name,
     lastname : lastname,
     hobbies: hobbies,
-    country: country
+    country: country,
+    picture: req.file.path
   }
 
   if( !editedUser.name || !editedUser.lastname || !editedUser.country){
