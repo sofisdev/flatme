@@ -126,15 +126,19 @@ router.get('/logout', checkLoggedInUser, (req,res,next)=>{
 //POST Methods
 router.post('/signup', (req, res, next) => {
   const {name, lastname, 
-          email, password, 
+          email, password, password2, 
           hobbies, country} = req.body
 
 
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
-     !password.length || !country.length || !name.length) {
+     !password.length || !password2.length || !country.length || !name.length) {
       res.render('signup.hbs', {msg: 'Please enter all fields'})
       return;
+  }
+  else if(!(password == password2)) {
+     res.render('signup.hbs', {msg: 'Passwords do not match'})
+     return;
   }
 
   //check for password
