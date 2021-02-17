@@ -169,33 +169,12 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) =>{
 
-  // let token = req.body.token;
-
-  // async function verify() {
-
-  //   const ticket = await client.verifyIdToken({
-  //       idToken: token,
-  //       audience: CLIENT_ID,
-  //   });
-
-  //   const payload = ticket.getPayload();
-  //   const userid = payload['sub'];
-  // }
-
-  // verify()
-  //   .then(()=>{
-  //     res.cookie('session-token', token);
-  //     res.send('success')
-  
-  //   })
-  //   .catch(console.error);
-
   const {email, password} = req.body
 
   if (!email.length || !password.length ) {
     res.render('login', {msg: 'Please enter all fields'})
     return;
-  } //no se porque me da error ahora, dice que no se puede leer legth de undefined
+  }
 
   UserModel.findOne({email : email})
     .then((result)=>{

@@ -17,16 +17,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.brand{
-  font-family: 'Comfortaa', cursive;
-}
-
 .header{
   background-color: rgba(255, 255, 255, 0.74);
   padding: 5px;
   color: var(--blue);
 }
-
 
 img{
   width: 150px;
@@ -55,7 +50,6 @@ footer {
   color: #210A72;
   transition: 0.90s;
 }
-
 
 .myhero {
   background-image: url(../images/background.jpg);
@@ -152,15 +146,6 @@ nav{
 
 .team-card > p {
   text-align: justify;
-}
-
-.userlogo{
-  margin: 10px;
-}
-
-.logo{
-  width: 100px;
-  height: auto;
 }
 
 .myinfo{
