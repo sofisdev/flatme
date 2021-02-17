@@ -1,5 +1,3 @@
-{{> userpartial}}
-
 <div class="container">
 
   <div class="section">
@@ -27,6 +25,11 @@
             <option value="Family">Family</option>
             <option value="Gay-friendly">Gay-friendly</option>
             <option value="Students">Students</option>
+            <option value="International">International</option>
+            <option value="Party-friendly">Party-friendly</option>
+            <option value="Groceries & restaurants">Groceries & restaurants</option>
+            <option value="Green area">Green area</option>
+            <option value="Sports options">Sports options</option>
         </select>
 
       </div>
@@ -37,20 +40,30 @@
     </form>
   </div>
 
-  <div id="map"></div>
+
+    <div id="map"></div>
+
+  
 
     {{#each review}}
       {{#if this.published}}
       <div class="section container viewAll">
-
+        <div class="userInfo">
+          <img class="col userpicture usersmall" src="{{this.userId.picture}}" alt="user picture"> 
+          <span>
+            <h3 class="mb-3">{{this.userId.name}}</h3>
+            <h3 class="mb-3">{{this.userId.lastname}}</h3>
+          </span>
+        </div>
+          
         <h2 class="mb-3">{{this.title}}</h2>
+        <h3 class="mb-3">{{this.score}} / 5</h3>
+        <div class="col">Tags: {{this.tags}}</div>
 
         <div class="container directions">
           <div class="row row-cols-3">
             <div class="col">City: {{this.city}}</div>
-            <div class="col">Address: {{this.address}}</div>
-            <div class="col">Score: {{this.score}}</div>
-            <div class="col">Tags: {{this.tags}}</div>
+            <div class="col">Address: {{this.address}}</div>           
             <div class="col">Status: {{this.status}}</div>
           </div>
         </div>
@@ -58,10 +71,11 @@
         <hr>
 
         <div class="container mt-4">
-          <p>Review: 
+          <p>Review:</p>
+          <p class="review"> 
             <br>
             <br>
-            {{this.review}}</p>
+            "{{this.review}}"</p>
         </div>
 
         {{#if this.picture}}
@@ -74,7 +88,7 @@
     {{/each}}
 
 
-  <div class="container section">
+  <div class="section">
 
     <h3 class="text-center mb-4">Do you find these reviews useful? Help us grow our community and write your own review!</h3>
 

@@ -17,16 +17,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.brand{
-  font-family: 'Comfortaa', cursive;
-}
-
 .header{
   background-color: rgba(255, 255, 255, 0.74);
   padding: 5px;
   color: var(--blue);
 }
-
 
 img{
   width: 150px;
@@ -45,7 +40,7 @@ footer {
 
 .my-link{
   color: black;
-  margin: 30px;
+  margin: 30px 30px 30px 0;
 }
 
 .my-link:hover{
@@ -56,6 +51,15 @@ footer {
   transition: 0.90s;
 }
 
+.mycollapse {
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-icon-link{
+  margin-right: 20px;
+}
 
 .myhero {
   background-image: url(../images/background.jpg);
@@ -158,15 +162,6 @@ nav{
   text-align: justify;
 }
 
-.userlogo{
-  margin: 10px;
-}
-
-.logo{
-  width: 100px;
-  height: auto;
-}
-
 .myinfo{
   display: flex;
   justify-content: space-between;
@@ -242,7 +237,8 @@ i:hover {
   margin-bottom: 10px;
   padding-bottom: 15px;
   padding-top: 5px;
-  border-bottom: 2px solid var(--orange);
+  background-color: white;
+  border-radius: 5px;
 }
 .contact > a {
   margin: 10px;
@@ -251,11 +247,52 @@ i:hover {
 .userpicture {
   width: 200px;
   height:200px;
+  object-fit: cover;
   border: 5px solid white;
-  border-radius: 100px;
+  border-radius: 50%;
 }
 
-@media (max-width: 600px) and (orientation: portrait){
+.userInfo{
+  display: inline-flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.userInfo span {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 15px;
+}
+.userInfo span > h3{
+  margin-right: 6px;
+}
+
+.usersmall {
+  width: 100px;
+  height:100px;
+}
+
+.review{
+  font-style: oblique;
+}
+
+
+.mytoggle{
+  border: none;
+  margin-right: 5px;
+}
+
+
+.mytoggle:focus {
+  z-index: 3;
+  border-color: var(--lightOrange);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--lightOrange);
+}
+
+
+@media (max-width: 850px) and (orientation: portrait){
   .team{
     flex-direction: column;
   }
@@ -265,5 +302,64 @@ i:hover {
     align-items: center;
   }
 
+  .userSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .myinfo{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info{
+    margin-bottom: 20px;
+  }
+
+  .section{
+    margin: 10px 15px 10px 15px;
+    font-size: 1.2em;
+  }
+
+  .mytext{
+    text-align: center;
+  }
+
+  .team-card > p {
+    text-align: center;
+  }
+
+}
+
+@media (max-width: 991px){
+
+  .mycollapse{
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .my-link{
+    font-size: 1.3rem;
+  }
+
+  .my-link:hover{
+    text-decoration: none;
+    color: #210A72;
+  }
+
+  .nav-item {
+    margin: 20px 0 0 20px;
+  }
+
+  .user-icon-link{
+    margin: 20px 0 0 20px ;
+  }
+
+  .team {
+    flex-direction: column;
+    align-items: center;
+  }
 }

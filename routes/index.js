@@ -18,7 +18,7 @@ const checkLoggedInUser = (req, res, next) =>{
     next()
   }
   else {
-    res.redirect('/signup')
+    res.redirect('/login')
   }
 }
 
@@ -41,7 +41,7 @@ router.get('/signup', (req, res, next) => {
 
 router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   
-  CommentModel.find()
+  CommentModel.find().populate('userId')
     .then((result) => {
       res.render('user/reviews', {review: result})
     })
@@ -140,7 +140,7 @@ router.post('/signup', (req, res, next) => {
   //check for password
   let regexPass = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/;
   if (!regexPass.test(password)) {
-     res.render('signup.hbs', {msg: 'Password needs to have special characters, some numbers and be 6 characters at least'})
+     res.render('signup.hbs', {msg: 'Password needs to have special characters, at least one Upppercase letter and one number and be 8 characters at least'})
      return;
   }
 
@@ -165,27 +165,6 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) =>{
-
-  // let token = req.body.token;
-
-  // async function verify() {
-
-  //   const ticket = await client.verifyIdToken({
-  //       idToken: token,
-  //       audience: CLIENT_ID,
-  //   });
-
-  //   const payload = ticket.getPayload();
-  //   const userid = payload['sub'];
-  // }
-
-  // verify()
-  //   .then(()=>{
-  //     res.cookie('session-token', token);
-  //     res.send('success')
-  
-  //   })
-  //   .catch(console.error);
 
   const {email, password} = req.body
 
@@ -216,12 +195,15 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
           email, hobbies, country} = req.body
 
+  let picturePath = "";
+  (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
+
   let editedUser = {
     name: name,
     lastname : lastname,
     hobbies: hobbies,
     country: country,
-    picture: req.file.path
+    picture: picturePath
   }
 
   if( !editedUser.name || !editedUser.lastname || !editedUser.country){
@@ -279,7 +261,10 @@ router.post('/writereview', (req, res, next) => {
 
       // create a review on the database
       CommentModel.create({idGeo, address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
-        .then(() => res.redirect('/profile'))
+        .then(() => {
+
+          res.redirect('/profile')
+        })
         .catch((err) => next(err))
     })
 })
