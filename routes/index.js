@@ -18,7 +18,7 @@ const checkLoggedInUser = (req, res, next) =>{
     next()
   }
   else {
-    res.redirect('/signup')
+    res.redirect('/login')
   }
 }
 
