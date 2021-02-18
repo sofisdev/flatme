@@ -134,11 +134,10 @@ router.post('/review/:id/edit', (req,res, next)=>{
 
   let id = req.params.id
 
-  const {city, address, zipcode, title, review, score, tags} = req.body;
+  const {city, zipcode, title, review, score, tags} = req.body;
 
   let editedComment = {
     city: city,
-    address: address,
     zipcode: zipcode,
     title: title,
     review: review,
@@ -157,20 +156,20 @@ router.post('/review/:id/edit', (req,res, next)=>{
 });
 
 router.post('/writereview', (req, res, next) => {
-  const {city, address, zipcode, title, review, score, tags} = req.body;
+  const {city, zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
   if (zipcode.length != 5 && zipcode.length) {
     res.render('user/writereview', {msg: 'Zipcode must have 5 numbers'})
      return;
   }
-  else if (!city.length || !zipcode.length || !title.length || !address.length || !review.length || !score.length ) {
+  else if (!city.length || !zipcode.length || !title.length || !review.length || !score.length ) {
      res.render('user/writereview', {msg: 'Please enter all fields'})
      return;
   }
   
   // create a review on the database
-  CommentModel.create({address, city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
+  CommentModel.create({city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
     .then(() => {
 
       res.redirect('/profile')
@@ -180,10 +179,10 @@ router.post('/writereview', (req, res, next) => {
 })
 
 router.post('/publishreview', (req, res, next) => {
-  const {city, address,zipcode, title, review, score, tags} = req.body;
+  const {city,zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
-   if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
+   if (!city.length && zipcode.length != 5 && !title.length || !review.length || !score.length ) {
     res.render('user/writereview', {msg: 'Please enter all fields'})
     return;
     }
@@ -199,7 +198,7 @@ router.post('/publishreview', (req, res, next) => {
      }
 
      // create a review on the database
-     CommentModel.create({idGeo, address, city, zipcode, title, published: true, review, score, tags, userId: req.session.loggedInUser._id})
+     CommentModel.create({idGeo, city, zipcode, title, published: true, review, score, tags, userId: req.session.loggedInUser._id})
        .then(() => res.redirect('/profile'))
        .catch((err) => next(err))
    })
@@ -209,7 +208,7 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 
   let id = req.params.id
 
-  const {city, address, zipcode, title, review, score, tags} = req.body;
+  const {city, zipcode, title, review, score, tags} = req.body;
 
   geocoder.geocode(`${zipcode}, ${city}`)
     .then((data) => {
@@ -222,7 +221,6 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 
       let editedComment = {
         city: city,
-        address: address,
         zipcode: zipcode,
         title: title,
         review: review,

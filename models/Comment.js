@@ -14,7 +14,6 @@ const CommentSchema = new Schema({
   },
   address: {
     type: String,
-    required:true
   },
   zipcode:{
     type: String,
