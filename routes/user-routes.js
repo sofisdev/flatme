@@ -125,24 +125,20 @@ router.get('/flatmecoordinates', (req, res, next) =>{
 })
 
 //POST Methods
-router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
-  const {name, lastname, 
-          email, country} = req.body
+router.post('/profile/edit', (req, res, next) => {
+  const {name, lastname, country} = req.body;
 
-  // let picturePath = "";
-  // (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
-
+  
   let editedUser = {
     name: name,
     lastname : lastname,
-    country: country,
-    // picture: picturePath
+    country: country
   }
 
-  if( !editedUser.name || !editedUser.lastname || !editedUser.country){
+  if(!editedUser.name || !editedUser.lastname || !editedUser.country){
     res.render('user/update-profile', {msg: 'Please enter all fields'})
   } else {
-    UserModel.findOneAndUpdate({email : email}, editedUser)
+    UserModel.findOneAndUpdate({email : req.session.loggedInUser.email}, editedUser)
     .then(() => res.redirect('/profile'))
     .catch((err) => next(err))
   }
@@ -157,7 +153,9 @@ router.post('/profile/edit-picture', uploader.single("picture"), (req, res, next
     picture: picturePath
   }
 
-  UserModel.updateOne(edi)
+  UserModel.updateOne(editedUser)
+    .then(() => res.redirect('/profile'))
+    .catch((err) => next(err))
 })
 
 router.post('/review/:id/edit', (req,res, next)=>{
