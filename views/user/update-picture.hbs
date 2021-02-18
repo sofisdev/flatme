@@ -2,16 +2,14 @@
 
   <div class="section">
 
-      <form method="POST" action="/profile/edit-picture" class="row g-3 text-center" enctype="multipart/form-data" >
-     
-      <input type="file" name="picture" accept="image/jpg, image/png">
-
-      <div class="col-12 text-center">
-        <button class="mybtn btnsmall text-white" formaction="profile.hbs">Cancel</button>
-        <button type="submit" class="mybtn btn btn-primary">Save</button>
-      </div>
+      <form method="POST" action="/profile/edit-picture" class="editpictureForm" enctype="multipart/form-data" >
+        <img class='selectimage' src="/images/selectpicture.png" alt="select picture">
+        <input type="file" name="picture" accept="image/jpg, image/png">
+        <div class="col-12 savepicture">
+          <button class="mybtn btnsmall text-white" formaction="/profile/cancelEdit">Cancel</button>
+          <button type="submit" class="mybtn btn btn-primary">Save</button>
+        </div>
       </form>
-
   </div>
 
 </div>
