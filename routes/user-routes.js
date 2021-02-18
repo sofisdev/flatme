@@ -355,6 +355,11 @@ router.post('/reviews', (req, res, next) => {
 
   CommentModel.find(filter).populate('userId')
     .then((result) => {
+      result.forEach((elem)=>{
+        let month = elem.dateRegister.toDateString().split(' ')[1]
+        let year = elem.dateRegister.toDateString().split(' ')[3]
+        elem.dateString = `${month} ${year}`
+      })
       res.render('user/reviews', {review: result})
     })
     .catch(() => res.redirect('/reviews'))
