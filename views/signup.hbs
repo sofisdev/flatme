@@ -11,17 +11,17 @@
     <form class="row g-3" method="POST" action="/signup">
       <p>Please fill out all the mandatory fields (*).</p>
       <hr>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label for="name" class="form-label">Name *</label>
         <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{profileBody.name}}">
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label for="lastname" class="form-label">Last Name *</label>
         <input type="text" name="lastname"  class="form-control" id="lastname" placeholder="Last Name" value="{{profileBody.lastname}}">
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label for="country" class="form-label">Country *</label>
         <select id="country" class="form-select" name="country" >
           <option selected>Choose...</option>
