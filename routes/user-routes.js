@@ -20,6 +20,11 @@ router.get('/reviews', checkLoggedInUser, (req, res, next)=>{
   
   CommentModel.find().populate('userId')
     .then((result) => {
+      result.forEach((elem)=>{
+        let month = elem.dateRegister.toDateString().split(' ')[1]
+        let year = elem.dateRegister.toDateString().split(' ')[3]
+        elem.dateString = `${month} ${year}`
+      })
       res.render('user/reviews', {review: result})
     })
     .catch((error)=>{
@@ -68,6 +73,20 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
     })
 })
 
+router.get('/profile/edit-picture', checkLoggedInUser, (req, res, next)=>{
+
+  let email = req.session.loggedInUser.email
+
+  UserModel.find({email : email})
+    .then((user)=>{
+      res.render('user/update-picture', {user})
+    })
+    .catch((err)=>{
+      next(err)
+    })
+
+})
+
 router.get('/review/:id/edit/',checkLoggedInUser, (req,res,next)=>{
 
   let id = req.params.id
@@ -110,14 +129,14 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
           email, country} = req.body
 
-  let picturePath = "";
-  (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
+  // let picturePath = "";
+  // (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
 
   let editedUser = {
     name: name,
     lastname : lastname,
     country: country,
-    picture: picturePath
+    // picture: picturePath
   }
 
   if( !editedUser.name || !editedUser.lastname || !editedUser.country){
@@ -127,6 +146,18 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
     .then(() => res.redirect('/profile'))
     .catch((err) => next(err))
   }
+})
+
+router.post('/profile/edit-picture', uploader.single("picture"), (req, res, next)=>{
+
+  let picturePath = "";
+  (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
+
+  let editedUser = {
+    picture: picturePath
+  }
+
+  UserModel.updateOne(edi)
 })
 
 router.post('/review/:id/edit', (req,res, next)=>{
@@ -174,11 +205,11 @@ router.post('/writereview', (req, res, next) => {
      res.render('user/writereview', {msg: 'Please enter all fields', reviewBody})
      return;
   }
+
   
   // create a review on the database
   CommentModel.create({city, zipcode, title, review, score, tags, userId: req.session.loggedInUser._id})
     .then(() => {
-
       res.redirect('/profile')
     })
     .catch((err) => next(err))
@@ -260,31 +291,55 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 })
 
 router.post('/reviews', (req, res, next) => {
-  const {score, tags, city} = req.body;
+  const {score, tags, city, zipcode} = req.body;
 
   //Define filter according to search results
   let filter = {}
 
-  if(score && tags && city) {
-  filter = {$and:[{score: score}, {tags: tags}, {city : city}]}
+  if(score && tags && city && zipcode) {
+  filter = {$and:[{score: score}, {tags: tags}, {city : city}, {zipcode : zipcode}]}
   }
-  else if (score && tag) {
-    filter = {$and: [{score:score}, {tag: tag}]}
+  else if (score && tags && zipcode) {
+    filter = {$and: [{score:score}, {tags: tags}, {zipcode : zipcode}]}
   }
-  else if (tags && city) {
-    filter = {$and: [{tags:tags}, {city: city}]}
+  else if (tags && city && zipcode) {
+    filter = {$and: [{tags:tags}, {city: city}, {zipcode : zipcode}]}
   }
-  else if (city && score) {
-    filter = {$and : [{city: city}, {score: score}]}
+  else if (city && score && zipcode) {
+    filter = {$and : [{city: city}, {score: score}, {zipcode : zipcode}]}
+  }
+  else if (tags && score && zipcode) {
+    filter = {$and : [{tags: tags}, {score: score}, {zipcode : zipcode}]}
+  }
+  else if (city && zipcode){
+    filter = {$and : [{city: city}, {zipcode : zipcode}]}
+  }
+  else if (city && tags){
+    filter = {$and : [{city: city}, {tags : tags}]}
+  }
+  else if (tags && zipcode) {
+    filter = {$and : [{tags: tags}, {zipcode : zipcode}]}
+  }
+  else if (score && zipcode) {
+    filter = {$and : [{score: score}, {zipcode : zipcode}]}
+  }
+  else if (score && tags) {
+    filter = {$and : [{score: score}, {tags : tags}]}
+  }
+  else if (score && city) {
+    filter = {$and : [{score: score}, {city : city}]}
+  }
+  else if (score){
+    filter = {score : score}
+  }
+  else if (tags){
+    filter = {tags : tags}
   }
   else if (city){
-    filter = {city: city}
+    filter = {city : city}
   }
-  else if (tags) {
-    filter = {tags: tags}
-  }
-  else if (score) {
-    filter = {score : score}
+  else if (zipcode){
+    filter = {zipcode : zipcode}
   }
 
 

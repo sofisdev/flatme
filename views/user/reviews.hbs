@@ -38,6 +38,11 @@
         <input type="text" name="city" id="city" class="form-control">
       </div>
 
+      <div class="col-md-6">
+        <label for="zipcode" class="form-label">Zipcode</label> 
+        <input type="text" name="zipcode" id="zipcode" class="form-control">
+      </div>
+
       <div class="col-12 text-center">
           <button type="submit" class="mybtn btn btn-primary">Search</button>
         </div>
@@ -46,9 +51,6 @@
 
 
     <div id="map"></div>
-
-
-    
 
   
   <div class="viewAll">
@@ -59,12 +61,16 @@
         <div class="userInfo">
           <img class="col userpicture usersmall" src="{{this.userId.picture}}" alt="user picture"> 
           <span>
-            <h3 class="mb-3">{{this.userId.name}}</h3>
-            <h3 class="mb-3">{{this.userId.lastname}}</h3>
+            <h3>{{this.userId.name}}</h3>
+            <h3>{{this.userId.lastname}}</h3>
           </span>
         </div>
           
         <h3 class="mb-3">{{this.title}}</h3>
+
+        <div class="secondary-card">
+          <p><i class="fas fa-thumbtack"></i> {{this.city}}, {{this.zipcode}}</p>
+        </div>
 
         <div class="inner-card">
           {{#if (eq this.score 5)}}
@@ -82,18 +88,17 @@
           {{#if (eq this.score 1)}}
             <h5 ml-4>🧡🤍🤍🤍🤍</h5>
           {{/if}}
-          <h5>#{{this.tags}}</h5>
+          <h5> <i class="fas fa-hashtag myfa"></i> {{this.tags}}</h5>
         </div>
 
-        <div class="secondary-card">
-          <p>City: {{this.city}}</p>
-        </div>
+
    
         <hr>
 
         <div class="mt-4">
           <p>Review:</p>
           <p class="review">"{{this.review}}"</p>
+          <p>{{this.dateString}}</p>
         </div>
 
         {{#if this.picture}}
