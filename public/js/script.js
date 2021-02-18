@@ -8,7 +8,7 @@ document.addEventListener(
   false
 );
 
-let map = L.map('map').setView([40.4166000, -3.7038400], 5)
+let map = L.map('map').setView([47.105268, 6.292691], 4)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 
 let locIcon = L.icon({
