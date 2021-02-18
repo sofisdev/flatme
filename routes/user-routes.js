@@ -128,7 +128,6 @@ router.get('/flatmecoordinates', (req, res, next) =>{
 router.post('/profile/edit', (req, res, next) => {
   const {name, lastname, country} = req.body;
 
-  
   let editedUser = {
     name: name,
     lastname : lastname,
@@ -153,9 +152,13 @@ router.post('/profile/edit-picture', uploader.single("picture"), (req, res, next
     picture: picturePath
   }
 
-  UserModel.updateOne(editedUser)
+  UserModel.findOneAndUpdate({email : req.session.loggedInUser.email}, editedUser)
     .then(() => res.redirect('/profile'))
     .catch((err) => next(err))
+})
+
+router.post('/profile/cancelEdit', (req, res, next) => {
+  res.redirect('/profile')
 })
 
 router.post('/review/:id/edit', (req,res, next)=>{

@@ -337,6 +337,36 @@ a i:hover {
   justify-content: space-between;
 }
 
+.selectimage{
+  width: 400px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.editpictureForm {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editpictureForm input {
+  margin-bottom: 30px;
+  background-color: var(--lightblue);
+  overflow: scroll;
+}
+
+.savepicture {
+  display:flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.btnsmall {
+  margin-right: 15px;
+  background-color: var(--lightOrange);
+}
+
+/* less than half computer screen */
 @media (max-width: 1400px){
   .single-review{
     max-width: 1400px;
@@ -346,10 +376,70 @@ a i:hover {
     display: flex;
     flex-direction: column;
   }
-  
 }
 
+/* Phones landscape */
+@media (max-width: 991px){
+
+  .selectimage{
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .mycollapse{
+    flex-direction: column;
+    align-items: initial;
+  }
+
+  .my-link{
+    font-size: 1.3rem;
+  }
+
+  .my-link:hover{
+    text-decoration: none;
+    color: #210A72;
+  }
+
+  .nav-item {
+    margin: 20px 0 0 20px;
+  }
+
+  .userSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-icon-link{
+    margin: 20px 0 0 20px ;
+  }
+
+  .team {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .single-review{
+    max-height: fit-content;
+  }
+
+  .controlbtn{
+    flex-direction: row;
+  }
+}
+
+/* Phones portrait */
 @media (max-width: 850px){
+  .selectimage{
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  /* .editpictureForm input {
+    overflow: scroll;
+  } */
   .team{
     flex-direction: column;
   }
@@ -394,46 +484,4 @@ a i:hover {
 
 }
 
-@media (max-width: 991px){
 
-  .mycollapse{
-    flex-direction: column;
-    align-items: initial;
-  }
-
-  .my-link{
-    font-size: 1.3rem;
-  }
-
-  .my-link:hover{
-    text-decoration: none;
-    color: #210A72;
-  }
-
-  .nav-item {
-    margin: 20px 0 0 20px;
-  }
-
-  .userSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .user-icon-link{
-    margin: 20px 0 0 20px ;
-  }
-
-  .team {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .single-review{
-    max-height: fit-content;
-  }
-
-  .controlbtn{
-    flex-direction: row;
-  }
-}
