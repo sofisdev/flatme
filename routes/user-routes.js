@@ -5,6 +5,7 @@ const CommentModel = require('../models/Comment.js');
 const geocoder = require('../utils/geocoder');
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 const uploader = require('../utils/cloudinary.config.js');
+const countriesList = require('../utils/countries.js')
 
 const checkLoggedInUser = (req, res, next) =>{
   if(req.session.loggedInUser){
@@ -71,7 +72,7 @@ router.get('/profile/edit', checkLoggedInUser, (req, res, next)=>{
 
   UserModel.find({email : email})
     .then((user)=>{
-      res.render('user/update-profile', {user})
+      res.render('user/update-profile', {user, countriesList: countriesList})
     })
     .catch((err)=>{
       next(err)
