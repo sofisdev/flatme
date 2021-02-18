@@ -26,22 +26,29 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const {name, lastname, email, password, password2, country} = req.body
 
+  let profileBody = {
+    name: name,
+    lastname: lastname,
+    email: email,
+    password: password,
+    country: country
+  }
 
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
      !password.length || !country.length || !name.length) {
-      res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!'})
+      res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!', profileBody})
       return;
   }
   else if(!(password == password2)) {
-     res.render('signup.hbs', {msg: 'Passwords do not match'})
+     res.render('signup.hbs', {msg: 'Passwords do not match', profileBody})
      return;
   }
 
   //check for password
-  let regexPass = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,20}$/;
+  let regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,20}$/;
   if (!regexPass.test(password)) {
-     res.render('signup.hbs', {msg: 'Password needs to have special characters, at least one Upppercase letter and one number and be 8 characters at least'})
+     res.render('signup.hbs', {msg: 'Password needs to have at least one Upppercase letter, one number, one special character and be 8 characters long at least', profileBody})
      return;
   }
 
@@ -53,7 +60,7 @@ router.post('/signup', (req, res, next) => {
   UserModel.findOne({email: email})
     .then((user) => {
       if(user) {
-        res.render('signup.hbs', {msg: 'This email is not available, are you sure you don not have an account with us already?'})
+        res.render('signup.hbs', {msg: 'This email is not available, are you sure you don not have an account with us already?', profileBody})
         return;
       }
     })

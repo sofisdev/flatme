@@ -13,21 +13,14 @@
       <hr>
       <div class="col-md-6">
         <label for="name" class="form-label">Name *</label>
-        <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+        <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{profileBody.name}}">
       </div>
 
       <div class="col-md-6">
         <label for="lastname" class="form-label">Last Name *</label>
-        <input type="text" name="lastname"  class="form-control" id="lastname" placeholder="Last Name">
+        <input type="text" name="lastname"  class="form-control" id="lastname" placeholder="Last Name" value="{{profileBody.lastname}}">
       </div>
 
-      <div class="col-md-6">
-        <span class="inline">
-          <label for="hobbies" class="form-label">Hobbies <span class="form-text">(Optional field)</span></label>
-          
-        </span>
-        <input type="text" name="hobbies" class="form-control" id="hobbies" placeholder="Type here...">
-      </div>
       <div class="col-md-6">
         <label for="country" class="form-label">Country *</label>
         <select id="country" class="form-select" name="country" >
@@ -276,14 +269,14 @@
 
       <div class="col-12">
         <label for="email" class="form-label">Email Address *</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="example@flatme.com">
+        <input type="email" name="email" class="form-control" id="email" placeholder="example@flatme.com" value="{{profileBody.email}}">
       </div>
 
       <div class="col-12">
         <label for="password" class="form-label">Password *</label>
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="{{profileBody.password}}">
         <div id="passwordHelpBlock" class="form-text">
-          Your password must be 8-20 characters long, contain letters and numbers (1 letter must be Uppercase), and must not contain spaces, or emoji.
+          Your password must be 8-20 characters long, contain at least 1 uppercase and 1 lowercase character, 1 special character and 1 number, and must not contain spaces, or emoji.
         </div>
       </div>
 
