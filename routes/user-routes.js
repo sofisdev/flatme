@@ -45,6 +45,11 @@ router.get('/profile',checkLoggedInUser, (req, res, next) =>{
       CommentModel.find({userId: req.session.loggedInUser._id})
             .populate('userId')
             .then((comment) => {
+              comment.forEach((elem)=>{
+                let month = elem.dateRegister.toDateString().split(' ')[1]
+                let year = elem.dateRegister.toDateString().split(' ')[3]
+                elem.dateString = `${month} ${year}`
+              })
               let isDrafts = false;
               comment.forEach(elem => {
                 if (!elem.published) {
@@ -106,12 +111,15 @@ router.get('/reviews/:id/delete/', checkLoggedInUser, (req, res, next)=>{
 
   CommentModel.findByIdAndDelete(id)
     .then(()=>{
-      console.log('deleting')
       res.redirect('/profile')
     })
     .catch(()=>{
       console.log('Not possible to delete')
     })
+})
+
+router.get('/change-password', (req,res,next)=>{
+
 })
 
 router.get('/logout', checkLoggedInUser, (req,res,next)=>{
@@ -129,14 +137,14 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
           email, country} = req.body
 
-  // let picturePath = "";
-  // (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
+  let picturePath = "";
+  (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
 
   let editedUser = {
     name: name,
     lastname : lastname,
     country: country,
-    // picture: picturePath
+    picture: picturePath
   }
 
   if( !editedUser.name || !editedUser.lastname || !editedUser.country){

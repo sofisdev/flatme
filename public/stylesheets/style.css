@@ -337,6 +337,13 @@ a i:hover {
   justify-content: space-between;
 }
 
+
+.date {
+  color: grey;
+  font-size: 0.8em;
+}
+/* MEDIA QUERIES */
+
 @media (max-width: 1400px){
   .single-review{
     max-width: 1400px;
@@ -346,7 +353,7 @@ a i:hover {
     display: flex;
     flex-direction: column;
   }
-  
+
 }
 
 @media (max-width: 850px){
