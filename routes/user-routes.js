@@ -108,7 +108,7 @@ router.get('/flatmecoordinates', (req, res, next) =>{
 //POST Methods
 router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
-          email, hobbies, country} = req.body
+          email, country} = req.body
 
   let picturePath = "";
   (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
@@ -116,7 +116,6 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   let editedUser = {
     name: name,
     lastname : lastname,
-    hobbies: hobbies,
     country: country,
     picture: picturePath
   }
@@ -161,7 +160,7 @@ router.post('/writereview', (req, res, next) => {
   
    //check for all required filled in values
   if (zipcode.length != 5 && zipcode.length) {
-    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers'})
+    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers', reviewdata: req.body})
      return;
   }
   else if (!city.length || !zipcode.length || !title.length || !address.length || !review.length || !score.length ) {
