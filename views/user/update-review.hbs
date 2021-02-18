@@ -1,22 +1,8 @@
 <div class="container">
   <div class="section">
   <form method="POST" action="/review/{{comment._id}}/edit" class="row g-3">
-    <div class="col-md-6">
-        <label for="city" class="form-label">City</label>
-        <input value="{{comment.city}}" type="text" name="city" id="city" class="form-control">
-    </div>
 
-    <div class="col-md-6">
-      <label for="address" class="form-label">Address</label>
-      <input value="{{comment.address}}" type="text" name="address" id="address" class="form-control">
-    </div>
-
-    <div class="col-md-6">
-      <label for="zipcode" class="form-label">Zipcode</label>
-      <input value="{{comment.zipcode}}" type="text" name="zipcode" id="zipcode" class="form-control">
-    </div>
-
-    <div class="col-md-6">
+    <div class="col-12">
       <label for="title" class="form-label">Title</label>
       <input value="{{comment.title}}" type="text" name="title" id="title" class="form-control">
     </div>
@@ -37,6 +23,18 @@
             <option value="5">⭐⭐⭐⭐⭐</option>
         </select>
       </div>
+
+    <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input value="{{comment.city}}" type="text" name="city" id="city" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="zipcode" class="form-label">Zipcode</label>
+      <input value="{{comment.zipcode}}" type="text" name="zipcode" id="zipcode" class="form-control">
+    </div>
+
+
 
       <div class="col-md-6">
         <label for="tags" class="form-label">Select a label</label> 
