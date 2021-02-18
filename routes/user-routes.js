@@ -144,7 +144,7 @@ router.post('/profile/edit', (req, res, next) => {
   }
 
   if(!editedUser.name || !editedUser.lastname || !editedUser.country){
-    res.render('user/update-profile', {msg: 'Please enter all fields'})
+    res.render('user/update-profile', {msg: 'Please enter all fields', countriesList: countriesList})
   } else {
     UserModel.findOneAndUpdate({email : req.session.loggedInUser.email}, editedUser)
     .then(() => res.redirect('/profile'))

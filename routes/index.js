@@ -38,11 +38,11 @@ router.post('/signup', (req, res, next) => {
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
      !password.length || !country.length || !name.length) {
-      res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!', profileBody})
+      res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!', profileBody, countriesList: countriesList})
       return;
   }
   else if(!(password == password2)) {
-     res.render('signup.hbs', {msg: 'Passwords do not match', profileBody})
+     res.render('signup.hbs', {msg: 'Passwords do not match', profileBody, countriesList: countriesList})
      return;
   }
 
@@ -61,7 +61,7 @@ router.post('/signup', (req, res, next) => {
   UserModel.findOne({email: email})
     .then((user) => {
       if(user) {
-        res.render('signup.hbs', {msg: 'This email is not available, are you sure you don not have an account with us already?', profileBody})
+        res.render('signup.hbs', {msg: 'This email is not available, are you sure you don not have an account with us already?', profileBody, countriesList: countriesList})
         return;
       }
     })
