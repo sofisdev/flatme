@@ -133,11 +133,10 @@ router.post('/review/:id/edit', (req,res, next)=>{
 
   let id = req.params.id
 
-  const {city, address, zipcode, title, review, score, tags} = req.body;
+  const {city, zipcode, title, review, score, tags} = req.body;
 
   let editedComment = {
     city: city,
-    address: address,
     zipcode: zipcode,
     title: title,
     review: review,
@@ -179,10 +178,10 @@ router.post('/writereview', (req, res, next) => {
 })
 
 router.post('/publishreview', (req, res, next) => {
-  const {city, address,zipcode, title, review, score, tags} = req.body;
+  const {city,zipcode, title, review, score, tags} = req.body;
   
    //check for all required filled in values
-   if (!city.length && zipcode.length != 5 && !title.length || !address.length || !review.length || !score.length ) {
+   if (!city.length && zipcode.length != 5 && !title.length || !review.length || !score.length ) {
     res.render('user/writereview', {msg: 'Please enter all fields'})
     return;
     }
@@ -198,7 +197,7 @@ router.post('/publishreview', (req, res, next) => {
      }
 
      // create a review on the database
-     CommentModel.create({idGeo, address, city, zipcode, title, published: true, review, score, tags, userId: req.session.loggedInUser._id})
+     CommentModel.create({idGeo, city, zipcode, title, published: true, review, score, tags, userId: req.session.loggedInUser._id})
        .then(() => res.redirect('/profile'))
        .catch((err) => next(err))
    })
@@ -208,7 +207,7 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 
   let id = req.params.id
 
-  const {city, address, zipcode, title, review, score, tags} = req.body;
+  const {city, zipcode, title, review, score, tags} = req.body;
 
   geocoder.geocode(`${zipcode}, ${city}`)
     .then((data) => {
@@ -221,7 +220,6 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 
       let editedComment = {
         city: city,
-        address: address,
         zipcode: zipcode,
         title: title,
         review: review,
@@ -242,20 +240,33 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 })
 
 router.post('/reviews', (req, res, next) => {
-  const {score, tags} = req.body;
+  const {score, tags, city} = req.body;
 
   //Define filter according to search results
   let filter = {}
 
-  if(score && tags) {
-  filter = {$and:[{score: score}, {tags: tags}]}
+  if(score && tags && city) {
+  filter = {$and:[{score: score}, {tags: tags}, {city : city}]}
   }
-  else if (score){
-    filter = {score:score}
+  else if (score && tag) {
+    filter = {$and: [{score:score}, {tag: tag}]}
   }
-  else if (tags){
-    filter = {tags:tags}
+  else if (tags && city) {
+    filter = {$and: [{tags:tags}, {city: city}]}
   }
+  else if (city && score) {
+    filter = {$and : [{city: city}, {score: score}]}
+  }
+  else if (city){
+    filter = {city: city}
+  }
+  else if (tags) {
+    filter = {tags: tags}
+  }
+  else if (score) {
+    filter = {score : score}
+  }
+
 
   CommentModel.find(filter).populate('userId')
     .then((result) => {

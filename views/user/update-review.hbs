@@ -7,12 +7,7 @@
       <input value="{{comment.title}}" type="text" name="title" id="title" class="form-control">
     </div>
 
-      <div class="col-12">
-        <label for="review" class="form-label">Your review</label>
-        <input value="{{comment.review}}" type="text" name="review" id="review" class="form-control">
-      </div>
-
-      <div class="col-md-6">
+    <div class="col-md-6">
         <label for="score" class="form-label">Score out of 5</label> 
         <select id="score" name="score" class="form-select" aria-label=".form-select-sm example">
           <option selected>{{comment.score}}</option>
@@ -22,7 +17,17 @@
             <option value="4">🧡🧡🧡🧡</option>
             <option value="5">🧡🧡🧡🧡🧡</option>
         </select>
-      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="tags" class="form-label">Select a label</label> 
+      <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example">
+        <option selected>{{comment.tags}}</option>
+        <option value="Family">Family</option>
+        <option value="Gay-friendly">Gay-friendly</option>
+        <option value="Students">Students</option>
+      </select>
+    </div>
 
     <div class="col-md-6">
         <label for="city" class="form-label">City</label>
@@ -34,18 +39,12 @@
       <input value="{{comment.zipcode}}" type="text" name="zipcode" id="zipcode" class="form-control">
     </div>
 
+    <div class="col-12">
+      <label for="review" class="form-label">Your review</label>
+      <input value="{{comment.review}}" type="text" name="review" id="review" class="form-control">
+    </div>
 
 
-      <div class="col-md-6">
-        <label for="tags" class="form-label">Select a label</label> 
-        <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example">
-          <option selected>{{comment.tags}}</option>
-            <option value="Family">Family</option>
-            <option value="Gay-friendly">Gay-friendly</option>
-            <option value="Students">Students</option>
-        </select>
-      </div>
-        
       <div class="col-12 text-center">
         <button type="submit" class="mybtn btn btn-primary">Save as draft</button>
         <button type="submit" class="mybtn btn btn-primary" formaction="/review/{{comment._id}}/edit/publish">Publish!</button>
