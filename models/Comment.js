@@ -13,8 +13,7 @@ const CommentSchema = new Schema({
     formattedAddress: String
   },
   address: {
-    type: String,
-    required:true
+    type: String
   },
   zipcode:{
     type: String,
