@@ -14,7 +14,9 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 hbs.registerPartials(__dirname + '/views/partials')
-
+hbs.registerHelper('eq', (value, rating) => {
+  return value == rating
+})
 
 const app = express();
 app.use(express.json());

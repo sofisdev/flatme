@@ -10,11 +10,11 @@
         <label for="score" class="form-label">Score</label> 
         <select id="score" name="score" class="form-select">
           <option selected></option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="1">🧡</option>
+            <option value="2">🧡🧡</option>
+            <option value="3">🧡🧡🧡</option>
+            <option value="4">🧡🧡🧡🧡</option>
+            <option value="5">🧡🧡🧡🧡🧡</option>
         </select>
       </div>
 
@@ -31,7 +31,11 @@
             <option value="Green area">Green area</option>
             <option value="Sports options">Sports options</option>
         </select>
+      </div>
 
+      <div class="col-md-6">
+        <label for="city" class="form-label">City</label> 
+        <input type="text" name="city" id="city" class="form-control">
       </div>
 
       <div class="col-12 text-center">
@@ -63,7 +67,21 @@
         <h3 class="mb-3">{{this.title}}</h3>
 
         <div class="inner-card">
-          <h5 ml-4>Rating: {{this.score}} / 5</h5>
+          {{#if (eq this.score 5)}}
+            <h5 ml-4>🧡🧡🧡🧡🧡</h5>
+          {{/if}}
+          {{#if (eq this.score 4)}}
+            <h5 ml-4>🧡🧡🧡🧡🤍</h5>
+          {{/if}}
+          {{#if (eq this.score 3)}}
+            <h5 ml-4>🧡🧡🧡🤍🤍</h5>
+          {{/if}}
+          {{#if (eq this.score 2)}}
+            <h5 ml-4>🧡🧡🤍🤍🤍</h5>
+          {{/if}}
+          {{#if (eq this.score 1)}}
+            <h5 ml-4>🧡🤍🤍🤍🤍</h5>
+          {{/if}}
           <h5>#{{this.tags}}</h5>
         </div>
 

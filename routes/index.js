@@ -24,9 +24,7 @@ router.get('/signup', (req, res, next) => {
 
 //POST Methods
 router.post('/signup', (req, res, next) => {
-  const {name, lastname, 
-          email, password, password2, 
-          hobbies, country} = req.body
+  const {name, lastname, email, password, password2, country} = req.body
 
 
   //check for all required filled in values
@@ -62,7 +60,7 @@ router.post('/signup', (req, res, next) => {
     .catch((err) => next(err))
   
   UserModel.create({email, name: capitalized(name), lastname: capitalized(lastname), password: hash, 
-    country: country, hobbies: hobbies})
+    country: country})
     .then(() => res.redirect('/login'))
     .catch((err) => next(err))
 })

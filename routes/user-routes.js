@@ -108,7 +108,7 @@ router.get('/flatmecoordinates', (req, res, next) =>{
 //POST Methods
 router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   const {name, lastname, 
-          email, hobbies, country} = req.body
+          email, country} = req.body
 
   let picturePath = "";
   (req.file) ? picturePath = req.file.path : picturePath = "/images/baseProfile.png"
@@ -116,7 +116,6 @@ router.post('/profile/edit', uploader.single("picture"), (req, res, next)=>{
   let editedUser = {
     name: name,
     lastname : lastname,
-    hobbies: hobbies,
     country: country,
     picture: picturePath
   }
@@ -160,7 +159,7 @@ router.post('/writereview', (req, res, next) => {
   
    //check for all required filled in values
   if (zipcode.length != 5 && zipcode.length) {
-    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers'})
+    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers', reviewdata: req.body})
      return;
   }
   else if (!city.length || !zipcode.length || !title.length || !review.length || !score.length ) {
@@ -241,20 +240,33 @@ router.post('/review/:id/edit/publish', (req, res, next)=>{
 })
 
 router.post('/reviews', (req, res, next) => {
-  const {score, tags} = req.body;
+  const {score, tags, city} = req.body;
 
   //Define filter according to search results
   let filter = {}
 
-  if(score && tags) {
-  filter = {$and:[{score: score}, {tags: tags}]}
+  if(score && tags && city) {
+  filter = {$and:[{score: score}, {tags: tags}, {city : city}]}
   }
-  else if (score){
-    filter = {score:score}
+  else if (score && tag) {
+    filter = {$and: [{score:score}, {tag: tag}]}
   }
-  else if (tags){
-    filter = {tags:tags}
+  else if (tags && city) {
+    filter = {$and: [{tags:tags}, {city: city}]}
   }
+  else if (city && score) {
+    filter = {$and : [{city: city}, {score: score}]}
+  }
+  else if (city){
+    filter = {city: city}
+  }
+  else if (tags) {
+    filter = {tags: tags}
+  }
+  else if (score) {
+    filter = {score : score}
+  }
+
 
   CommentModel.find(filter).populate('userId')
     .then((result) => {
