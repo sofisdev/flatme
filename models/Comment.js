@@ -24,6 +24,9 @@ const CommentSchema = new Schema({
     default: Date.now,
     required: true
   },
+  dateString:{
+    type: String,
+  },
   city: {
     type: String,
     required:true

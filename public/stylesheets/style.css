@@ -175,7 +175,6 @@ nav{
 .myinfo{
   display: flex;
   justify-content: space-between;
-  width: 100%;
 } 
 
 .myinfo span{
@@ -209,7 +208,11 @@ i {
   color: var(--blue);
 }
 
-i:hover {
+a i:hover {
+  color: var(--orange);
+}
+
+.myfa{
   color: var(--orange);
 }
 
@@ -296,12 +299,10 @@ i:hover {
   font-style: oblique;
 }
 
-
 .mytoggle{
   border: none;
   margin-right: 5px;
 }
-
 
 .mytoggle:focus {
   z-index: 3;
@@ -340,6 +341,12 @@ i:hover {
   .single-review{
     max-width: 1400px;
   }
+
+  .profile-image{
+    display: flex;
+    flex-direction: column;
+  }
+  
 }
 
 @media (max-width: 850px){
@@ -375,6 +382,15 @@ i:hover {
   .team-card > p {
     text-align: center;
   }
+
+  .secondary-card{
+    flex-direction: column;
+  }
+
+  .inner-card{
+    flex-direction: column;
+  }
+
 
 }
 
