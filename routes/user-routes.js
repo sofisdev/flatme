@@ -157,13 +157,21 @@ router.post('/review/:id/edit', (req,res, next)=>{
 router.post('/writereview', (req, res, next) => {
   const {city, zipcode, title, review, score, tags} = req.body;
   
-   //check for all required filled in values
+  let reviewBody = {
+    city: city,
+    zipcode: zipcode,
+    title: title,
+    review: review,
+    score: score,
+    tags: tags
+  }
+  //check for all required filled in values
   if (zipcode.length != 5 && zipcode.length) {
-    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers', reviewdata: req.body})
+    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers', reviewBody})
      return;
   }
   else if (!city.length || !zipcode.length || !title.length || !review.length || !score.length ) {
-     res.render('user/writereview', {msg: 'Please enter all fields'})
+     res.render('user/writereview', {msg: 'Please enter all fields', reviewBody})
      return;
   }
   
@@ -179,12 +187,24 @@ router.post('/writereview', (req, res, next) => {
 
 router.post('/publishreview', (req, res, next) => {
   const {city,zipcode, title, review, score, tags} = req.body;
-  
-   //check for all required filled in values
-   if (!city.length && zipcode.length != 5 && !title.length || !review.length || !score.length ) {
-    res.render('user/writereview', {msg: 'Please enter all fields'})
-    return;
-    }
+
+  let reviewBody = {
+    city: city,
+    zipcode: zipcode,
+    title: title,
+    review: review,
+    score: score,
+    tags: tags
+  }  
+  //check for all required filled in values
+  if (zipcode.length != 5 && zipcode.length) {
+    res.render('user/writereview', {msg: 'Zipcode must have 5 numbers', reviewBody})
+     return;
+  }
+  else if (!city.length || !zipcode.length || !title.length || !review.length || !score.length ) {
+     res.render('user/writereview', {msg: 'Please enter all fields', reviewBody})
+     return;
+  }
 
   //transform address and city into coordinates and create element in the database
   geocoder.geocode(`${zipcode}, ${city}`)

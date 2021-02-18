@@ -6,7 +6,7 @@
 
     <div class="col-12">
       <label for="title" class="form-label">Title <span class="form-text">*</span> </label>
-      <input type="text" name="title" id="title" class="form-control">
+      <input type="text" name="title" id="title" class="form-control" value="{{reviewBody.title}}">
     </div>
 
     <div class="col-md-6">
@@ -23,7 +23,7 @@
 
     <div class="col-md-6">
       <label for="tags" class="form-label">Select a label <span class="form-text">(Optional field)</span> </label> 
-      <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example">
+      <select id="tags" name="tags" class="form-select" aria-label=".form-select-sm example" value="{{reviewBody.tags}}">
         <option selected></option>
           <option value="Family">Family</option>
           <option value="Gay-friendly">Gay-friendly</option>
@@ -38,19 +38,17 @@
 
     <div class="col-md-6">
         <label for="city" class="form-label">City <span class="form-text">*</span></label>
-        <input type="text" name="city" id="city" class="form-control">
+        <input type="text" name="city" id="city" class="form-control" value="{{reviewBody.city}}">
     </div>
 
     <div class="col-md-6">
       <label for="zipcode" class="form-label">Zipcode <span class="form-text">*</span> </label>
-      <input type="text" name="zipcode" id="zipcode" class="form-control">
+      <input type="text" name="zipcode" id="zipcode" class="form-control" value="{{reviewBody.zipcode}}">
     </div>
-
-
 
     <div class="col-12">
       <label for="review" class="form-label">Your review <span class="form-text">*</span> </label>
-      <input type="text" name="review" id="review" class="form-control">
+      <input type="text" name="review" id="review" class="form-control" value="{{reviewBody.review}}">
     </div>
         
       <div class="col-12 text-center">
