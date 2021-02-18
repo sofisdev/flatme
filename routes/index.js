@@ -49,7 +49,7 @@ router.post('/signup', (req, res, next) => {
   //check for password
   let regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{8,20}$/;
   if (!regexPass.test(password)) {
-     res.render('signup.hbs', {msg: 'Password needs to have at least one Upppercase letter, one number, one special character (for example !, @, #, $, %, ^, &, or *) and be 8 characters long at least', profileBody})
+     res.render('signup.hbs', {msg: 'Password needs to have at least one Upppercase letter, one number, one special character (for example !, @, #, $, %, ^, &, or *) and be 8 characters long at least', profileBody, countriesList: countriesList})
      return;
   }
 
