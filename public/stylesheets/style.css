@@ -350,6 +350,10 @@ a i:hover {
   margin-bottom: 20px;
 }
 
+.errorimg {
+  margin-top: 15px;
+}
+
 .editpictureForm {
   display:flex;
   flex-direction: column;
