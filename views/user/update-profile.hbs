@@ -2,23 +2,23 @@
 
   <div class="section">
 
-    <div class="subtitle">
+    <div class="subtitle mb-4">
       <h1>Hey {{user.0.name}}! here you can update your profile</h1>
     </div>
 
 
       <form method="POST" action="/profile/edit" class="row g-3">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label for="name" class="form-label">Name *</label>
           <input value="{{user.0.name}}" type="text" name="name" id="name" class="form-control">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label for="lastname" class="form-label">Last Name *</label>
           <input value="{{user.0.lastname}}" type="text" name="lastname" id="lastname" class="form-control">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label for="country" class="form-label">Country *</label> 
           <select id="country" name="country" class="form-select" aria-label=".form-select-sm example">
             <option value="{{user.0.country}}">{{user.0.country}}</option>
@@ -265,7 +265,7 @@
         </div>
       
         <div class="col-12 text-center">
-          <button type="submit" class="mybtn btn btn-primary">Save Changes</button>
+          <button type="submit" class="mybtn btn btn-primary mt-4">Save Changes</button>
         </div>
       </form>
 

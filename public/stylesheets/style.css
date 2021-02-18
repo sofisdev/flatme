@@ -359,7 +359,7 @@ a i:hover {
 .editpictureForm input {
   margin-bottom: 30px;
   background-color: var(--lightblue);
-  overflow: scroll;
+  max-width: 100%;
 }
 
 .savepicture {
@@ -372,6 +372,7 @@ a i:hover {
   margin-right: 15px;
   background-color: var(--lightOrange);
 }
+
 
 /* less than half computer screen */
 @media (max-width: 1400px){
@@ -488,7 +489,6 @@ a i:hover {
   .inner-card{
     flex-direction: column;
   }
-
 
 }
 
