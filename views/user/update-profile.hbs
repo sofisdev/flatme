@@ -22,7 +22,6 @@
           <label for="country" class="form-label">Country *</label> 
           <select id="country" name="country" class="form-select" aria-label=".form-select-sm example">
             <option selected value="{{user.0.country}}">{{user.0.country}}</option>
-            <option >Choose...</option>
             {{#each countriesList}}
               <option value="{{this.name}}">{{this.name}}</option>
             {{/each}}

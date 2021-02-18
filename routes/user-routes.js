@@ -137,16 +137,16 @@ router.get('/flatmecoordinates', (req, res, next) =>{
 router.post('/profile/edit', (req, res, next) => {
   const {name, lastname, country} = req.body;
 
-  let editedUser = {
+  let user = [{
     name: name,
     lastname : lastname,
     country: country
-  }
+  }]
 
-  if(!editedUser.name || !editedUser.lastname || !editedUser.country){
-    res.render('user/update-profile', {msg: 'Please enter all fields', countriesList: countriesList})
+  if(!user[0].name || !user[0].lastname || !user[0].country){
+    res.render('user/update-profile', {msg: 'Please enter all fields', user, countriesList: countriesList})
   } else {
-    UserModel.findOneAndUpdate({email : req.session.loggedInUser.email}, editedUser)
+    UserModel.findOneAndUpdate({email : req.session.loggedInUser.email}, user[0])
     .then(() => res.redirect('/profile'))
     .catch((err) => next(err))
   }
