@@ -46,8 +46,7 @@ const CommentSchema = new Schema({
     required: true
   },
   tags:{
-    type:String,
-    enum: ['Family', 'Gay-friendly', 'Students', 'International', 'Party-friendly', 'Commercial area', 'Green area', 'Sports options']
+    type:String
   },
   marker: {
     type:String,

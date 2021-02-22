@@ -37,7 +37,7 @@ router.post('/signup', (req, res, next) => {
 
   //check for all required filled in values
   if (!email.length || !name.length || !lastname.length ||
-     !password.length || !country.length || !name.length) {
+     !password.length || !country || !name.length) {
       res.render('signup.hbs', {msg: 'Seems like you forgot to fill out all the fields!', profileBody, countriesList: countriesList})
       return;
   }
