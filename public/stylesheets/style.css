@@ -442,6 +442,7 @@ a i:hover {
   }
 }
 
+
 /* Phones portrait */
 @media (max-width: 850px){
   .selectimage{
@@ -483,7 +484,7 @@ a i:hover {
   }
 
   .team-card > p {
-    text-align: center;
+    text-align: left;
   }
 
   .secondary-card{
@@ -492,6 +493,10 @@ a i:hover {
 
   .inner-card{
     flex-direction: column;
+  }
+
+  .text-resp{
+    text-align: left;
   }
 
 }
