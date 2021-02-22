@@ -21,15 +21,58 @@ The MPV will include the possibility to sign-up, log-in and log-out. Write revie
 
 ## Backlog
 
-- [ ] Adding a map 
-- [ ] Validating addresses on reviews with an API
+- [x] Adding a map 
+- [x] Validating addresses on reviews with an API
 - [x] Make the design responsive
 - [ ] Possibility to vote reviews, only for users
 - [ ] Two roles, user and admin, so the admin will be a moderator, with the possibility to delete reviews.
-- [ ] Adding img to Profile
+- [x] Adding img to Profile
 - [ ] Adding img to review
-- [ ] Draft possibility for the reviews
+- [x] Draft possibility for the reviews
+
+## Built with
+- [NodeJs](https://nodejs.org/es/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [node-geocoder](https://www.npmjs.com/package/node-geocoder)
+- [Leaflet](https://leafletjs.com/)
+- [OpenStreetMap](https://www.openstreetmap.org/#map=18/44.44046/-1.24220)
+- [Bootstrap](https://getbootstrap.com/)
+
+## Data Structure
+### Config
+
+### db (connection to MongoDB)
+
+### error-handling
+
+### Models
+- Comment.js
+- User.js
+
+### public
+- images
+- js
+- stylesheets
+
+### routes
+- index.js
+- user-routes.js
+
+### utils
+- cloudinary.config.js
+- countries.js
+- geocoder.js
+
+### views
+- partials
+- user
 
 ## Resources
 
 [Kanba board](https://www.notion.so/martagigu/0b654384f6be44fba5dcf216264b9aad?v=033c7046f84a4e599f8b6908b6f344c7)
+
+[Presentation Slides](https://docs.google.com/presentation/d/18J3HTRMHiJu-dIG1B4xN_Zneq5LUM4_HZAsnt0BPiy8/edit#slide=id.p)
+
+## Deployed Website
+
+[flatme.herokuapp](https://flatme.herokuapp.com/)
